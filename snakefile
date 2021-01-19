@@ -10,7 +10,3 @@ rule import_data:
         "{sample}.fastq"
     shell:
         "curl -o {output[1]} {input} > {output[0]} "
-#split the file and run the script
-rule generate:
-    input:
-        "data/{sample}.fastq"
