@@ -1,0 +1,52 @@
+GENOMESDIR="/storage/mgymrek/TReeofLife/genomes"
+TRFDIR="/storage/mgymrek/TReeofLife/trf"
+
+wildcard_constraints:
+    species="[^.]*"
+
+SPECIES = ["ce11","sacCer3"] # TODO this could eventually read from a file once this list gets very long
+
+rule all:
+    input:
+        [("%s/{species}/{species}.trf.filt.bed"%TRFDIR).format(species=species) for species in SPECIES]
+
+rule index_fa:
+    input:
+        "%s/{species}/{species}.fa"%GENOMESDIR
+    output:
+        "%s/{species}/{species}.fa.fai"%GENOMESDIR
+    shell:
+        "samtools faidx {input}"
+
+# This rule splits a single fasta file by chrom
+# It additionally outputs {species}.chrom, so that the rule has an output file to check
+rule split_fa:
+    input:
+        "%s/{species}/{species}.fa"%GENOMESDIR,
+        "%s/{species}/{species}.fa.fai"%GENOMESDIR
+    output:
+        "%s/{species}/bychrom/{species}.chroms"%GENOMESDIR
+    shell:
+        "./split_fa.sh {GENOMESDIR} {wildcards.species}"
+
+# Run TRF on each chromosome, and output to a single TRF bed file per species
+rule run_trf:
+    input:
+        "%s/{species}/bychrom/{species}.chroms"%GENOMESDIR
+    output:
+        "%s/{species}/{species}.trf.bed"%TRFDIR
+    shell:
+        "./make_trf.sh {GENOMESDIR} {wildcards.species} {output}"
+
+# Filter initial TRF output
+rule filter_trf:
+    input:
+        "%s/{species}/{species}.trf.bed"%TRFDIR
+    output:
+        "%s/{species}/{species}.trf.filt.bed"%TRFDIR
+    shell:
+        "python3 filter_TRF_nopandas.py {input} {output}"
+
+# TODO - below make a different rule for stats on each TRF file
+# Save those results to files in TRFDIR/{species}
+# Can have nother rule that will combine stats across all species to a big table
