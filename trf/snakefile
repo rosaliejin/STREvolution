@@ -58,5 +58,5 @@ rule str_count:
     output:
          "%s/{species}/{species}.str_count.txt"%TRFDIR
     shell:
-        "for period in $(seq 1 6); do awk -v"period=$period" '$4==period'  {input} | wc -l > {output}; done"
+        "for period in $(seq 1 6); do awk -v {{period=$period}} '$4==period'  {input} | wc -l | awk -v {{period=$period}} '{print period '\t' $0}' ; done > {output}"
 
