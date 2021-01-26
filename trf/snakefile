@@ -8,7 +8,7 @@ SPECIES = ["ce11","sacCer3"] # TODO this could eventually read from a file once 
 
 rule all:
     input:
-        [("%s/{species}/{species}.trf.filt.bed"%TRFDIR).format(species=species) for species in SPECIES]
+        [("%s/{species}/{species}.str_count.txt"%TRFDIR).format(species=species) for species in SPECIES]
 
 rule index_fa:
     input:
@@ -50,3 +50,13 @@ rule filter_trf:
 # TODO - below make a different rule for stats on each TRF file
 # Save those results to files in TRFDIR/{species}
 # Can have nother rule that will combine stats across all species to a big table
+
+#count for homopolymer, dinucleotide, etc.,
+rule str_count:
+    input:
+        "%s/{species}/{species}.trf.filt.bed"%TRFDIR 
+    output:
+         "%s/{species}/{species}.str_count.txt"%TRFDIR
+    shell:
+"for period in $(seq 1 6); do awk -v"period=$period" '$4==period'  {input} | wc -l | awk -v"period=$period" '{print period "\t" $0}'; done > {output}"
+
