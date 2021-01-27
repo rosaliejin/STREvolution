@@ -63,8 +63,7 @@ rule str_count:
 
 rule genome_length:
     input:
-        "%s/{species}/{species}.str_count.txt"%YJDIR
-        "%s/{species}/{species}.trf.filt.bed"%TRFDIR
+        "%s/{species}/{species}.str_count.txt"%YJDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR
     output:
         "%s/{species}/{species}.genome_length.txt"%YJDIR
     shell:
