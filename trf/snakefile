@@ -68,7 +68,7 @@ rule genome_length:
     output:
         "%s/{species}/{species}.genome_length.txt"%YJDIR
     shell:
-         "awk '{{print $2}'] input[1] | awk '{{ sum+=$1 }}END{{} print sum }} > {output}"
+         "awk '{{print $2}}' input[1] | awk '{{ sum+=$1 }}END{{ print sum }} > {output}"
 
 #count the number of str base
 rule str_base:
@@ -77,4 +77,4 @@ rule str_base:
     output:
         "%s/{species}/{species}.str_base.txt"%YJDIR
     shell:
-         "awk '{{print length($4)}}'  input[1] | awk '{{sum+=$1 }}END{{} print sum }}'> {output}"
+         "awk '{{print length($4)}}'  input[1] | awk '{{sum+=$1 }}END{{ print sum }}'> {output}"
