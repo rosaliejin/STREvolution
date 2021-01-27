@@ -1,6 +1,6 @@
 GENOMESDIR="/storage/mgymrek/TReeofLife/genomes"
 TRFDIR="/storage/mgymrek/TReeofLife/trf"
-YJDIR="/storage/mgymrek/TReeofLife/SnakemakeTest"
+#YJDIR="/storage/yjin/TReeofLife/SnakemakeTest"
 
 wildcard_constraints:
     species="[^.]*"
@@ -9,7 +9,7 @@ SPECIES = ["ce11","sacCer3"] # TODO this could eventually read from a file once 
 
 rule all:
     input:
-        [("%s/{species}/{species}.str_count.txt"%YJDIR).format(species=species) for species in SPECIES]
+        [("%s/{species}/{species}.str_count.txt"%TRFDIR).format(species=species) for species in SPECIES]
 
 rule index_fa:
     input:
@@ -57,7 +57,7 @@ rule str_count:
     input:
         "%s/{species}/{species}.trf.filt.bed"%TRFDIR 
     output:
-         "%s/{species}/{species}.str_count.txt"%YJDIR
+         "%s/{species}/{species}.str_count.txt"%TRFDIR
     shell:
         "for period in $(seq 1 6); do awk -v\"period=$period\" '$4==period'  {input} | wc -l | awk -v\"period=$period\" '{{print period \"\t\" $0}}' ; done > {output}"
 
