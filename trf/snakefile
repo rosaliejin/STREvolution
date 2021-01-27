@@ -9,7 +9,7 @@ SPECIES = ["ce11","sacCer3"] # TODO this could eventually read from a file once 
 
 rule all:
     input:
-        [("%s/{species}/{species}.str_count.txt"%YJDIR).format(species=species) for species in SPECIES]
+        [("%s/{species}/{species}.str_base.txt"%YJDIR).format(species=species) for species in SPECIES]
 
 rule index_fa:
     input:
