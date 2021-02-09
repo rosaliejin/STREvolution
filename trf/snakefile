@@ -89,11 +89,12 @@ rule organize:
 
          "python \"STREvolution_Stat.py\" {input[1]} {input[2]} {input[0]} {wildcards.species} {output}"
 
-#rule plot:
-#    input:
-#       "%s/organnize.csv"%YJDIR
-#    output:
-#        "%s/organnize.csv"%YJDIR
-#    shell:
+rule plot:
+    input:
+       "%s/organnize.csv"%YJDIR
+    #if multiple figures are saved in this step, what should be the output?
+    output:
+        "%s/TRSpecies_PeriodPercs.pdf"%YJDIR, "%s/TRSpecies_GenomePerc.pdf"%YJDIR, "%s/TRSpecies_Density.pdf"%YJDIR
+    shell:
 
- #        "python \"STREvolution_Stat.py\" {input[1]} {input[2]} {input[0]} {species} {output}"
+        "python \"Tree_Of_Life_Graph.py\" {input[0]} {output}"
