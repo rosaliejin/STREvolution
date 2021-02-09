@@ -27,6 +27,7 @@ strbase= int(file.readline().replace("\n",""))
 species_name= sys.argv[4]
 
 filename = sys.argv[5]
+filepath = "/storage/mgymrek/TReeofLife/SnakemakeTest/"+filename
 
 
 # In[ ]:
@@ -60,12 +61,12 @@ print(final)
 
 from csv import writer
 
-with open(filename, 'a+', newline='') as write_obj:
+with open(filepath, 'a+', newline='') as write_obj:
         # Create a writer object from csv module
     csv_writer = writer(write_obj)
         # Add contents of list as last row in the csv file
     csv_writer.writerow(final)
 
-#with open(filename, 'w') as csvfile:
+#with open(, 'w') as csvfile:
 #    csvwriter = csv.writer(csvfile,delimiter=',')
 #    csvwriter.writerow(final)
