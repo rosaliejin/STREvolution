@@ -79,6 +79,7 @@ rule str_base:
     shell:
          "awk '{{print length($4)}}'  {input[1]} | awk '{{sum+=$1 }}END{{ print sum }}'> {output}"
 
+#Creating table to organize annalysis
 rule organize:
     input:
         "%s/{species}/{species}.str_base.txt"%YJDIR, "%s/{species}/{species}.str_count.txt"%YJDIR, "%s/{species}/{species}.genome_length.txt"%YJDIR 
@@ -86,4 +87,13 @@ rule organize:
         "%s/organnize.csv"%YJDIR
     shell:
 
-         "python \"STREvolution_Stat.py\" {input[1]} {input[2]} {input[0]} {species} {output}"
+         "python \"STREvolution_Stat.py\" {input[1]} {input[2]} {input[0]} {wildcards.species} {output}"
+
+#rule plot:
+#    input:
+#       "%s/organnize.csv"%YJDIR
+#    output:
+#        "%s/organnize.csv"%YJDIR
+#    shell:
+
+ #        "python \"STREvolution_Stat.py\" {input[1]} {input[2]} {input[0]} {species} {output}"
