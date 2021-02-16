@@ -1,11 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[7]:
 
-
-
-get_ipython().run_line_magic('pylab', 'inline')
 import pandas as pd
 import numpy as np
 import sys
@@ -14,6 +10,14 @@ import sys
 import matplotlib
 matplotlib.rcParams['pdf.fonttype'] = 42
 matplotlib.rcParams['ps.fonttype'] = 42
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
+infile = sys.argv[1]
+out_period_perc = sys.argv[2]
+out_genome_perc = sys.argv[3]
+out_density = sys.argv[4]
+
 
 # Load ordered species list
 #species_list = [item.strip() for item in open("TReeOfLife_OrderedSpeciesList.txt", "r").readlines()]
@@ -22,7 +26,9 @@ matplotlib.rcParams['ps.fonttype'] = 42
 # Load data and order by species order
 
 #data = pd.read_txt(sys.argv[1])
-data = pd.read_csv("organize.csv")
+
+data = pd.read_csv(infile)
+
 #data["order"] = data["name"].apply(lambda x: species_order[x])
 #data = data.sort_values("order")
 
@@ -32,6 +38,7 @@ data = pd.read_csv("organize.csv")
 
 
 # In[8]:
+
 
 
 data
@@ -62,7 +69,7 @@ ax.spines['right'].set_visible(False)
 ax.spines['top'].set_visible(False)
 ax.yaxis.set_ticks_position('left')
 ax.xaxis.set_ticks_position('bottom')
-fig.savefig("TRSpecies_PeriodPercs.pdf")
+fig.savefig(out_period_perc)
 
 
 # In[36]:
@@ -76,7 +83,8 @@ ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["str.density"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
 ax.set_xticklabels(data["name"], rotation=90);
-fig.savefig("TRSpecies_Density.pdf")
+fig.savefig(out_density)
+
 
 fig = plt.figure()
 fig.set_size_inches((15, 4))
@@ -84,11 +92,7 @@ ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["str.perc.bp"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
 ax.set_xticklabels(data["name"], rotation=90);
-fig.savefig("TRSpecies_GenomePerc.pdf")
-
-
-# In[43]:
-
+fig.savefig(out_genome_perc)
 
 fig = plt.figure()
 fig.set_size_inches((15, 4))
@@ -157,22 +161,3 @@ ax.bar(range(data.shape[0]), data["hexanucleotide"], color="black", edgecolor="w
 ax.set_xticks(range(data.shape[0]))
 ax.set_xticklabels(data["name"], rotation=90);
 fig.savefig("TRSpecies_hexanucleotide.pdf")
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
