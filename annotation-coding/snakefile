@@ -13,7 +13,7 @@ rule all:
         #"%s/ann.coding_TRSpecies_PeriodPercs.pdf"%YJDIR,
         #"%s/ann.coding_TRSpecies_GenomePerc.pdf"%YJDIR,
         #"%s/ann.coding_TRSpecies_Density.pdf"%YJDIR
-        [("%s/ann.coding_organnize_{species}.csv"%YJDIR).format(species=species) for species in SPECIES]
+        [("%s/ann.coding_organize_{species}.csv"%YJDIR).format(species=species) for species in SPECIES]
 
 #filter STR in the annotated regions
 rule filter:
