@@ -22,7 +22,7 @@ rule filter:
     output:
          "%s/{species}/{species}.ann.coding.bed"%ANNDIR
     shell:
-        "intersectBed -a {input}[0] -b {input}[1] -wa -u > {output}"
+        "intersectBed -a {input[0]} -b {input[1]} -wa -u > {output}"
 
 
 #count for homopolymer, dinucleotide, etc.,
