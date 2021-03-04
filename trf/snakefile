@@ -12,7 +12,7 @@ rule all:
         #"%s/TRSpecies_PeriodPercs.pdf"%YJDIR,
         #"%s/TRSpecies_GenomePerc.pdf"%YJDIR,
         #"%s/TRSpecies_Density.pdf"%YJDIR
-        [("%s/organnize_{species}.csv"%YJDIR).format(species=species) for species in SPECIES]
+        [("%s/organize_{species}.csv"%YJDIR).format(species=species) for species in SPECIES]
 
 rule index_fa:
     input:
