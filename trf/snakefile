@@ -14,7 +14,7 @@ rule all:
         #"%s/ann.{annotation}.TRSpecies_PeriodPercs.pdf"%YJDIR,
         #"%s/ann.{annotation}.TRSpecies_GenomePerc.pdf"%YJDIR,
         #"%s/ann.{annotation}.TRSpecies_Density.pdf"%YJDIR
-        [("%s/ann.{annotation}.organize_{species}.csv"%YJDIR).format(species=species) for species in SPECIES, annotation=config["annotation"]]
+        expand("%s/ann.{annotation}.organize_{species}.csv"%YJDIR).format(species=species) for species in SPECIES, annotation=config["annotation"])
 
 #filter STR in the annotated regions
 rule filter:
