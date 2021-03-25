@@ -1,0 +1,79 @@
+GENOMESDIR="/storage/mgymrek/TReeofLife/genomes"
+TRFDIR="/storage/mgymrek/TReeofLife/trf"
+ANNDIR = "/storage/mgymrek/TReeofLife/annotations"
+YJDIR="/storage/mgymrek/TReeofLife/SnakemakeTest"
+
+wildcard_constraints:
+    species="[^.]*"
+
+SPECIES = ["ce11","sacCer3"] # TODO this could eventually read from a file once this list gets very long
+
+rule all:
+    input:
+        #"%s/ann.intron_TRSpecies_PeriodPercs.pdf"%YJDIR,
+        #"%s/ann.intron_TRSpecies_GenomePerc.pdf"%YJDIR,
+        #"%s/ann.intron_TRSpecies_Density.pdf"%YJDIR
+        [("%s/ann.intron_organize_{species}.csv"%YJDIR).format(species=species) for species in SPECIES]
+
+#filter STR in the annotated regions
+rule filter:
+    input:
+        "%s/{species}/{species}.trf.filt.bed"%TRFDIR, "%s/{species}.intron.bed"%ANNDIR
+    output:
+         "%s/{species}/{species}.ann.intron.bed"%ANNDIR
+    shell:
+        "intersectBed -a {input[0]} -b {input[1]} -wa -u > {output}"
+
+
+#count for homopolymer, dinucleotide, etc.,
+rule str_count:
+    input:
+        "%s/{species}/{species}.ann.intron.bed"%ANNDIR
+    output:
+         "%s/{species}/{species}.ann.intron_str_count.txt"%YJDIR
+    shell:
+        "for period in $(seq 1 6); do awk -v\"period=$period\" '$4==period'  {input} | wc -l | awk -v\"period=$period\" '{{print period \"\t\" $0}}' ; done > {output}"
+
+#count the length of entire genome
+rule genome_length:
+    input:
+        "%s/{species}/{species}.ann.intron_str_count.txt"%YJDIR, "%s/{species}/{species}.ann.intron.bed"%ANNDIR
+    output:
+        "%s/{species}/{species}.ann.intron_genome_length.txt"%YJDIR
+    shell:
+         "awk '{{print $2}}' {input[1]} | awk '{{ sum+=$1 }}END{{ print sum }}' > {output}"
+
+#count the number of str base
+rule str_base:
+    input:
+        "%s/{species}/{species}.ann.intron_genome_length.txt"%YJDIR, "%s/{species}/{species}.ann.intron.bed"%ANNDIR
+    output:
+        "%s/{species}/{species}.ann.intron_str_base.txt"%YJDIR
+    shell:
+         "awk '{{print length($4)}}'  {input[1]} | awk '{{sum+=$1 }}END{{ print sum }}'> {output}"
+
+#Creating table to organize annalysis
+rule organize:
+    input:
+        "%s/{species}/{species}.ann.intron_str_base.txt"%YJDIR, "%s/{species}/{species}.ann.intron_str_count.txt"%YJDIR, "%s/{species}/{species}.ann.intron_genome_length.txt"%YJDIR 
+    output:
+        "%s/ann.intron_organize_{species}.csv"%YJDIR
+    shell:
+         "python \"STREvolution_Stat.py\" {input[1]} {input[2]} {input[0]} {wildcards.species} {output}"
+
+rule combine_organize:
+    input:
+         [("%s/ann.intron_organize_{species}.csv"%YJDIR).format(species=species) for species in SPECIES]
+    output:
+        "%s/ann.intron_organize.csv"%YJDIR
+    shell:
+        "cat {input} > {output}"
+
+rule plot:
+    input:
+       "%s/ann.intron_organize.csv"%YJDIR
+    #if multiple figures are saved in this step, what should be the output?
+    output:
+        "%s/ann.intron_TRSpecies_PeriodPercs.pdf"%YJDIR, "%s/ann.intron_TRSpecies_GenomePerc.pdf"%YJDIR, "%s/ann.intron_TRSpecies_Density.pdf"%YJDIR
+    shell:
+        "python \"Tree_Of_Life_Graph.py\" {input[0]} {output}"
