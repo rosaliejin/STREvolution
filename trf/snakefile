@@ -1,4 +1,5 @@
-GENOMESDIR="/storage/mgymrek/TReeofLife/genomes"
+GENOMESDIROLD="/storage/mgymrek/TReeofLife/genomes"
+GENOMESDIR="cd /storage/yjin/TreeofLife/data"
 TRFDIR="/storage/mgymrek/TReeofLife/trf"
 YJDIR="/storage/mgymrek/TReeofLife/SnakemakeTest"
 
