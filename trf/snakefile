@@ -6,7 +6,7 @@ YJDIR="/storage/mgymrek/TReeofLife/SnakemakeTest"
 wildcard_constraints:
     species="[^.]*"
 
-SPECIES = ["ailMel1"] 
+SPECIES = ["ailMel1","ce11"] 
 rule all:
     input:
         #"%s/TRSpecies_PeriodPercs.pdf"%YJDIR,
