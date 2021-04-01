@@ -9,10 +9,10 @@ wildcard_constraints:
 SPECIES = ["ailMel1","ce11"] 
 rule all:
     input:
-        #"%s/TRSpecies_PeriodPercs.pdf"%YJDIR,
-        #"%s/TRSpecies_GenomePerc.pdf"%YJDIR,
-        #"%s/TRSpecies_Density.pdf"%YJDIR
-        [("%s/organnize_{species}.csv"%YJDIR).format(species=species) for species in SPECIES]
+        "%s/TRSpecies_PeriodPercs.pdf"%YJDIR,
+        "%s/TRSpecies_GenomePerc.pdf"%YJDIR,
+        "%s/TRSpecies_Density.pdf"%YJDIR
+        #[("%s/organnize_{species}.csv"%YJDIR).format(species=species) for species in SPECIES]
 
 rule index_fa:
     input:
