@@ -1,6 +1,6 @@
 GENOMESDIROLD="/storage/mgymrek/TReeofLife/genomes"
 GENOMESDIR="/storage/yjin/TreeofLife/data"
-TRFDIR="/storage/mgymrek/TReeofLife/trf"
+TRFDIR="/storage/yjin/TreeofLife/trf"
 YJDIR="/storage/mgymrek/TReeofLife/SnakemakeTest"
 
 wildcard_constraints:
