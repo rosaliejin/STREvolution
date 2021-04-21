@@ -304,7 +304,7 @@ for chr, line_list in chrs.items():
         # time script
         endTime = datetime.now()
         print(str.format('Done! Processing time was: {0}', endTime - startTime))
-        return
+        quit()
     
     # sort proc_line_list by chr_start before overlap detection
     start_idx = get_col_as_list(proc_line_list, 'start')
@@ -336,7 +336,7 @@ for chr, line_list in chrs.items():
         # time script
         endTime = datetime.now()
         print(str.format('Done! Processing time was: {0}', endTime - startTime))
-        return
+        quit()
     # find instance with overlap
     overlap_line_idx = []
     for r in range(len(dedup_list)-1):
