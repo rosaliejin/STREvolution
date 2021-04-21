@@ -299,17 +299,10 @@ for chr, line_list in chrs.items():
 
     print(str.format('Survived: {0} repeats', len(proc_line_list)))
     print('Removing duplicate repeats')
-    #check if survived repeats equal to 0
-    if len(proc_line_list)== 0:
-        # time script
-        endTime = datetime.now()
-        print(str.format('Done! Processing time was: {0}', endTime - startTime))
-        return
-    
     # sort proc_line_list by chr_start before overlap detection
     start_idx = get_col_as_list(proc_line_list, 'start')
     idx = list(range(len(start_idx)))
-    
+
     # rearrange dup_list according to the new index
     sort_start_idx, sort_idx = zip(*sorted(zip(start_idx, idx)))
     proc_line_list = [proc_line_list[i] for i in sort_idx]
@@ -327,16 +320,9 @@ for chr, line_list in chrs.items():
     dedup_list = []
     for i in to_keep:
         dedup_list.append(proc_line_list[i])
-    
 
     print(str.format('Survived: {0} repeats', len(dedup_list)))
     print('Removing overlapping repeats')
-    #check if survived repeats equal to 0
-    if len(dedup_list)== 0:
-        # time script
-        endTime = datetime.now()
-        print(str.format('Done! Processing time was: {0}', endTime - startTime))
-        return
     # find instance with overlap
     overlap_line_idx = []
     for r in range(len(dedup_list)-1):
