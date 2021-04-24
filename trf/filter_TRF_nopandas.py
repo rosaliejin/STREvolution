@@ -231,6 +231,11 @@ for chr, line_list in chrs.items():
     print(str.format('------------------\nProcessing chromosome: {0}\n------------------', chr))
 
     print(str.format('Number of repeats: {0}', len(line_list)))
+    if len(line_list)== 0:
+        # time script
+        endTime = datetime.now()
+        print(str.format('Done! Processing time was: {0}', endTime - startTime))
+        quit()
     # first reduce any sets of repeats that share a common start and end to one
     # same locus: same chr, start and end
     # keep the shortest (simplest) motif
