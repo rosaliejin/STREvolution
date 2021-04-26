@@ -231,7 +231,7 @@ for chr, line_list in chrs.items():
     print(str.format('------------------\nProcessing chromosome: {0}\n------------------', chr))
 
     print(str.format('Number of repeats: {0}', len(line_list)))
-    if len(line_list)== 0:
+    if len(line_list)<= 1:
         # time script
         endTime = datetime.now()
         print(str.format('Done! Processing time was: {0}', endTime - startTime))
