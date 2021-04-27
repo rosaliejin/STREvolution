@@ -33,6 +33,9 @@ def keep_smallest_motif(line_list, group_by_col):
             is_dup.append(True)
         else:
             is_dup.append(False)
+    #####
+    if len(gids)<=1:
+        quit()
     is_dup = [gids[0] == gids[1]] + is_dup
     is_dup = is_dup + [gids[-2] == gids[-1]]
     idx, is_dup = zip(*sorted(zip(idx, is_dup)))
