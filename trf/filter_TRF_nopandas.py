@@ -33,9 +33,6 @@ def keep_smallest_motif(line_list, group_by_col):
             is_dup.append(True)
         else:
             is_dup.append(False)
-    #####
-    if len(gids)<=1:
-        quit()
     is_dup = [gids[0] == gids[1]] + is_dup
     is_dup = is_dup + [gids[-2] == gids[-1]]
     idx, is_dup = zip(*sorted(zip(idx, is_dup)))
@@ -242,15 +239,18 @@ for chr, line_list in chrs.items():
     # first reduce any sets of repeats that share a common start and end to one
     # same locus: same chr, start and end
     # keep the shortest (simplest) motif
-    line_list = keep_smallest_motif(line_list, 'locus')
+    if len(line_list) >1:
+        line_list = keep_smallest_motif(line_list, 'locus')
     print(str.format('Keep smallest motif from identical loci; Survived: {0} repeats', len(line_list)))
 
     # second reduce any sets of repeats that share a common start but not end
-    line_list = keep_smallest_motif(line_list, 'start_id')
+    if len(line_list) >1:
+        line_list = keep_smallest_motif(line_list, 'start_id')
     print(str.format('Keep smallest motif from identical start pos; Survived: {0} repeats', len(line_list)))
 
     # second reduce any sets of repeats that share a common end but not start
-    line_list = keep_smallest_motif(line_list, 'end_id')
+    if len(line_list) >1:
+        line_list = keep_smallest_motif(line_list, 'end_id')
     print(str.format('Keep smallest motif from identical end pos; Survived: {0} repeats', len(line_list)))
 
     # time script
