@@ -231,11 +231,7 @@ for chr, line_list in chrs.items():
     print(str.format('------------------\nProcessing chromosome: {0}\n------------------', chr))
 
     print(str.format('Number of repeats: {0}', len(line_list)))
-    if len(line_list)<= 1:
-        # time script
-        endTime = datetime.now()
-        print(str.format('Done! Processing time was: {0}', endTime - startTime))
-        quit()
+
     # first reduce any sets of repeats that share a common start and end to one
     # same locus: same chr, start and end
     # keep the shortest (simplest) motif
@@ -312,6 +308,15 @@ for chr, line_list in chrs.items():
         # time script
         endTime = datetime.now()
         print(str.format('Done! Processing time was: {0}', endTime - startTime))
+        if first_out:
+            fotype = 'w'
+            first_out = False
+        else:
+            fotype = 'a'
+
+        # write the final file
+        with open(out_bed_file, fotype) as outfile:
+            outfile.write(out_line)
         quit()
     
     # sort proc_line_list by chr_start before overlap detection
@@ -344,6 +349,15 @@ for chr, line_list in chrs.items():
         # time script
         endTime = datetime.now()
         print(str.format('Done! Processing time was: {0}', endTime - startTime))
+        if first_out:
+            fotype = 'w'
+            first_out = False
+        else:
+            fotype = 'a'
+
+        # write the final file
+        with open(out_bed_file, fotype) as outfile:
+            outfile.write(out_line)
         quit()
     # find instance with overlap
     overlap_line_idx = []
