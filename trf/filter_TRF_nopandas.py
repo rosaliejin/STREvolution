@@ -315,10 +315,8 @@ for chr, line_list in chrs.items():
             fotype = 'a'
 
         # write the final file
-        with open(out_bed_file, fotype) as outfile:
-            outfile.write(out_line)
+        open(out_bed_file, fotype)
         quit()
-    
     # sort proc_line_list by chr_start before overlap detection
     start_idx = get_col_as_list(proc_line_list, 'start')
     idx = list(range(len(start_idx)))
@@ -356,8 +354,7 @@ for chr, line_list in chrs.items():
             fotype = 'a'
 
         # write the final file
-        with open(out_bed_file, fotype) as outfile:
-            outfile.write(out_line)
+        open(out_bed_file, fotype)
         quit()
     # find instance with overlap
     overlap_line_idx = []
