@@ -17,12 +17,19 @@ while True:
         
 file = open(sys.argv[2],"r")
 f = file.readline().replace("\n","")
-print(f)
-genomelength= int(f)
+if f == "":
+    genomelength = 0
+else:
+    genomelength= int(f)
 
         
 file = open(sys.argv[3],"r")
-strbase= float(file.readline().replace("\n",""))
+f = file.readline().replace("\n","")
+if f == "":
+    strbase = 0
+else:
+    strbase= int(f)
+#strbase= float(file.readline().replace("\n",""))
 
 species_name= sys.argv[4]
 
