@@ -16,7 +16,9 @@ while True:
         strcount.append(int(line.strip().split()[1]))
         
 file = open(sys.argv[2],"r")
-genomelength= float(file.readline().replace("\n",""))
+f = file.readline().replace("\n","")
+print(f)
+genomelength= int(f)
 
         
 file = open(sys.argv[3],"r")
