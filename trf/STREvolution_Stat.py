@@ -45,7 +45,7 @@ for i in range(0,len(strcount)):
     if genomelength == 0:
         strpercent.append(0)
     else:
-        trpercent.append(strcount[i]/float(strnumsum))
+        strpercent.append(strcount[i]/float(strnumsum))
 
 # In[ ]:
 final = []
@@ -56,9 +56,15 @@ for k in strpercent:
     row.append(k)
 row.append(genomelength)
 row.append(strbase)
-row.append(strbase/float(genomelength))
+if genomelength == 0:
+    row.append(0)
+else:
+    row.append(strbase/float(genomelength))
 row.append(strnumsum)
-row.append(strnumsum/float(genomelength))
+if genomelength == 0:
+    row.append(0)
+else:
+    row.append(strnumsum/float(genomelength))
 
 final.append(species_name)
 
