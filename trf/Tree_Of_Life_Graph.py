@@ -51,7 +51,7 @@ data
 # Plot repeat percentages
 
 fig = plt.figure()
-fig.set_size_inches((15, 4))
+fig.set_size_inches((15, 10))
 ax = fig.add_subplot(111)
 
 bottoms = np.array([0]*data.shape[0])
@@ -79,7 +79,7 @@ fig.savefig(out_period_perc)
 # Plot repeat density
 
 fig = plt.figure()
-fig.set_size_inches((15, 4))
+fig.set_size_inches((15, 10))
 ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["str.density"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
@@ -88,7 +88,7 @@ fig.savefig(out_density)
 
 
 fig = plt.figure()
-fig.set_size_inches((15, 4))
+fig.set_size_inches((15, 10))
 ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["str.perc.bp"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
@@ -96,7 +96,7 @@ ax.set_xticklabels(data["name"], rotation=90);
 fig.savefig(out_genome_perc)
 
 fig = plt.figure()
-fig.set_size_inches((15, 4))
+fig.set_size_inches((15, 10))
 ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["homopolymers"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
@@ -108,7 +108,7 @@ fig.savefig("TRSpecies_homopolymer.pdf")
 
 
 fig = plt.figure()
-fig.set_size_inches((15, 4))
+fig.set_size_inches((15, 10))
 ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["dinucleotide"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
@@ -120,7 +120,7 @@ fig.savefig("TRSpecies_dinucleotide.pdf")
 
 
 fig = plt.figure()
-fig.set_size_inches((15, 4))
+fig.set_size_inches((15, 10))
 ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["trinucleotide"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
@@ -132,7 +132,7 @@ fig.savefig("TRSpecies_trinucleotide.pdf")
 
 
 fig = plt.figure()
-fig.set_size_inches((15, 4))
+fig.set_size_inches((15, 10))
 ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["tetranucleotide"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
@@ -144,7 +144,7 @@ fig.savefig("TRSpecies_tetranucleotide.pdf")
 
 
 fig = plt.figure()
-fig.set_size_inches((15, 4))
+fig.set_size_inches((15, 10))
 ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["pentanucleotide"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
@@ -156,7 +156,7 @@ fig.savefig("TRSpecies_pentanucleotide.pdf")
 
 
 fig = plt.figure()
-fig.set_size_inches((15, 4))
+fig.set_size_inches((15, 10))
 ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["hexanucleotide"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
