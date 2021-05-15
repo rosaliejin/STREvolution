@@ -42,7 +42,10 @@ strnumsum = sum(strcount)
 
 strpercent = []
 for i in range(0,len(strcount)):
-    strpercent.append(strcount[i]/float(strnumsum))
+    if genomelength == 0:
+        strpercent.append(0)
+    else:
+        trpercent.append(strcount[i]/float(strnumsum))
 
 # In[ ]:
 final = []
