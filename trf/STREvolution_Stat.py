@@ -16,11 +16,11 @@ while True:
         strcount.append(int(line.strip().split()[1]))
         
 file = open(sys.argv[2],"r")
-genomelength= int(file.readline().replace("\n",""))
+genomelength= float(file.readline().replace("\n",""))
 
         
 file = open(sys.argv[3],"r")
-strbase= int(file.readline().replace("\n",""))
+strbase= float(file.readline().replace("\n",""))
 
 species_name= sys.argv[4]
 
