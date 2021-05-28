@@ -17,6 +17,12 @@ infile = sys.argv[1]
 out_period_perc = sys.argv[2]
 out_genome_perc = sys.argv[3]
 out_density = sys.argv[4]
+out_1 = sys.argv[5]
+out_2 = sys.argv[6]
+out_3 = sys.argv[7]
+out_4 = sys.argv[8]
+out_5 = sys.argv[9]
+out_6 = sys.argv[10]
 
 
 # Load ordered species list
@@ -101,8 +107,7 @@ ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["homopolymers"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
 ax.set_xticklabels(data["name"], rotation=90);
-fig.savefig("TRSpecies_homopolymer.pdf")
-
+fig.savefig(out_1)
 
 # In[44]:
 
@@ -113,7 +118,7 @@ ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["dinucleotide"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
 ax.set_xticklabels(data["name"], rotation=90);
-fig.savefig("TRSpecies_dinucleotide.pdf")
+fig.savefig(out_2)
 
 
 # In[45]:
@@ -125,7 +130,7 @@ ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["trinucleotide"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
 ax.set_xticklabels(data["name"], rotation=90);
-fig.savefig("TRSpecies_trinucleotide.pdf")
+fig.savefig(out_3)
 
 
 # In[46]:
@@ -137,7 +142,7 @@ ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["tetranucleotide"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
 ax.set_xticklabels(data["name"], rotation=90);
-fig.savefig("TRSpecies_tetranucleotide.pdf")
+fig.savefig(out_4)
 
 
 # In[47]:
@@ -149,7 +154,7 @@ ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["pentanucleotide"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
 ax.set_xticklabels(data["name"], rotation=90);
-fig.savefig("TRSpecies_pentanucleotide.pdf")
+fig.savefig(out_5)
 
 
 # In[48]:
@@ -161,4 +166,4 @@ ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["hexanucleotide"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
 ax.set_xticklabels(data["name"], rotation=90);
-fig.savefig("TRSpecies_hexanucleotide.pdf")
+fig.savefig(out_6)
