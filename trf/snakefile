@@ -10,10 +10,11 @@ SPECIES = ["ce11","sacCer3","ailMel1","anoCar2","anoGam3","apiMel2","aplCal1","a
 
 rule all:
     input:
-        "%s/TRSpecies_PeriodPercs.pdf"%YJDIR,
-        "%s/TRSpecies_GenomePerc.pdf"%YJDIR,
-        "%s/TRSpecies_Density.pdf"%YJDIR
+        #"%s/TRSpecies_PeriodPercs.pdf"%YJDIR,
+        #"%s/TRSpecies_GenomePerc.pdf"%YJDIR,
+        #"%s/TRSpecies_Density.pdf"%YJDIR
         #[("%s/organize_{species}.csv"%YJDIR).format(species=species) for species in SPECIES]
+	"%s/TRSpecies_PeriodPercs.pdf"%YJDIR, "%s/TRSpecies_GenomePerc.pdf"%YJDIR, "%s/TRSpecies_Density.pdf"%YJDIR,"TRSpecies_homopolymer.pdf"%YJDIR,"TRSpecies_dinucleotide.pdf"%YJDIR,"TRSpecies_trinucleotide.pdf"%YJDIR,"TRSpecies_tetranucleotide.pdf"%YJDIR,"TRSpecies_pentanucleotide.pdf"%YJDIR,"TRSpecies_hexanucleotide.pdf"%YJDIR
 
 rule index_fa:
     input:
@@ -105,6 +106,6 @@ rule plot:
        "%s/organize.csv"%YJDIR
     #if multiple figures are saved in this step, what should be the output?
     output:
-        "%s/TRSpecies_PeriodPercs.pdf"%YJDIR, "%s/TRSpecies_GenomePerc.pdf"%YJDIR, "%s/TRSpecies_Density.pdf"%YJDIR
+        "%s/TRSpecies_PeriodPercs.pdf"%YJDIR, "%s/TRSpecies_GenomePerc.pdf"%YJDIR, "%s/TRSpecies_Density.pdf"%YJDIR,"TRSpecies_homopolymer.pdf"%YJDIR,"TRSpecies_dinucleotide.pdf"%YJDIR,"TRSpecies_trinucleotide.pdf"%YJDIR,"TRSpecies_tetranucleotide.pdf"%YJDIR,"TRSpecies_pentanucleotide.pdf"%YJDIR,"TRSpecies_hexanucleotide.pdf"%YJDIR
     shell:
         "python \"Tree_Of_Life_Graph.py\" {input[0]} {output}"
