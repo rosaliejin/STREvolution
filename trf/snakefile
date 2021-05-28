@@ -68,7 +68,7 @@ rule str_count:
 #count the length of entire genome
 rule genome_length:
     input:
-        "%s/{species}/{species}.str_count.txt"%YJDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR
+        "%s/{species}/{species}.str_count.txt"%YJDIR, "%s/{species}/{species}.fa.fai"%GENOMESDIR
     output:
         "%s/{species}/{species}.genome_length.txt"%YJDIR
     shell:
@@ -81,7 +81,7 @@ rule str_base:
     output:
         "%s/{species}/{species}.str_base.txt"%YJDIR
     shell:
-         "awk '{{print length($4)}}'  {input[1]} | awk '{{sum+=$1 }}END{{ print sum }}'> {output}"
+         "awk '{{print length($6)}}'  {input[1]} | awk '{{sum+=$1 }}END{{ print sum }}'> {output}"
 
 #Creating table to organize annalysis
 rule organize:
