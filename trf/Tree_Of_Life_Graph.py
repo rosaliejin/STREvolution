@@ -28,6 +28,7 @@ out_6 = sys.argv[10]
 # Load ordered species list
 species_list = [item.strip() for item in open("SpeciesList.txt", "r").readlines()]
 species_order = dict(zip(species_list, range(1, len(species_list)+1)))
+print(species_order)
 
 # Load data and order by species order
 
@@ -35,7 +36,6 @@ species_order = dict(zip(species_list, range(1, len(species_list)+1)))
 
 col_name = ["name","homopolymers","dinucleotide","trinucleotide","tetranucleotide","pentanucleotide","hexanucleotide","per1.perc","per2.perc","per3.perc","per4.perc","per5.perc","per6.perc","genome_length","str_base","str.perc.bp","str.num","str.density"]
 data = pd.read_csv(infile,header = None, names = col_name)
-print(data["name"])
 data["order"] = data["name"].apply(lambda x: species_order[x])
 data = data.sort_values("order")
 
