@@ -86,6 +86,7 @@ saiBol1
 calJac1
 nomLeu3
 ponAbe2
+ponAbe3
 hg19
 gorGor5
 panTro6
