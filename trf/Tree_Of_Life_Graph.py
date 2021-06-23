@@ -27,7 +27,7 @@ out_6 = sys.argv[10]
 
 # Load ordered species list
 species_list = [item.strip() for item in open("SpeciesList.txt", "r").readlines()]
-#species_order = dict(zip(species_list, range(1, len(species_list)+1)))
+species_order = dict(zip(species_list, range(1, len(species_list)+1)))
 
 # Load data and order by species order
 
