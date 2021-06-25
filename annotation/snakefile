@@ -28,7 +28,7 @@ rule translation_start:
     shell:
         #"awk 'index($3, 'CDS')' {input} | awk '{{if($7 == '+'){{print $4}}else{{print $5}}}}' > {output}"
         #"awk 'index($3, \"CDS\")' {input} | awk '{{if($7 == \"+\"){{print $4}}else{{print $5}}}}' > {output}"
-        "awk 'index($3, \"CDS\")' {input} | awk '{ print ($3==\"CDS\") ? $4 :  $5}'"
+        "awk 'index($3, \"CDS\")' {input} | awk '{{ print ($3==\"CDS\") ? $4 :  $5}}'"
 
 
 
