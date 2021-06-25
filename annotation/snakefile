@@ -26,15 +26,15 @@ rule translation_start:
          "%s/{species}/{species}.TranslationStart.bed"%ANNDIR
     shell:
         awk 'index($3, "CDS")' {input} | awk '{
-	if($7 == "+")
-	{
-	print $4, "\n"
-	}
-	else
-	{
-	print $5, "\n"
-	} 
-	}' > {output}
+	    if($7 == "+")
+	    {
+	    print $4, "\n"
+	    }
+	    else
+	    {
+	    print $5, "\n"
+	    } 
+	    }' > {output}
 
 
 
