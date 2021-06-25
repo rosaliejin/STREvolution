@@ -1,6 +1,5 @@
-GENOMESDIR="/storage/mgymrek/TReeofLife/genomes"
-TRFDIR="/storage/mgymrek/TReeofLife/trf"
-ANNDIR = "/storage/mgymrek/TReeofLife/annotations"
+TRFDIR="/storage/yjin/TReeofLife/trf"
+ANNDIR = "/storage/yjin/TreeofLife/annotation"
 YJDIR="/storage/mgymrek/TReeofLife/SnakemakeTest"
 
 wildcard_constraints:
@@ -19,12 +18,30 @@ rule all:
         #"%s/ann.{annotation}.TRSpecies_GenomePerc.pdf"%YJDIR,
         #"%s/ann.{annotation}.TRSpecies_Density.pdf"%YJDIR
         [("%s/ann.{annotation}.organize_{species}.csv"%YJDIR).format(species=species, annotation=config["annotation"]) for species in SPECIES]
-       
+
+rule translation_start:
+    input:
+        "%s/{species}.gtf"%ANNDIR
+    output:
+         "%s/{species}/{species}.TranslationStart.bed"%ANNDIR
+    shell:
+        awk 'index($3, "CDS")' {input} | awk '{
+	if($7 == "+")
+	{
+	print $4, "\n"
+	}
+	else
+	{
+	print $5, "\n"
+	} 
+	}' ailMel1.gtf > {output}
+
+
 
 #filter STR in the annotated regions
 rule filter:
     input:
-        "%s/{species}/{species}.trf.filt.bed"%TRFDIR, "%s/{species}.{annotation}.bed"%ANNDIR
+        "%s/{species}/{species}.TranslationStart.bed"%ANNDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR, "%s/{species}.{annotation}.bed"%ANNDIR
     output:
          "%s/{species}/{species}.ann.{annotation}.bed"%ANNDIR
     shell:
