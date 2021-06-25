@@ -34,7 +34,7 @@ rule translation_start:
 	{
 	print $5, "\n"
 	} 
-	}' ailMel1.gtf > {output}
+	}' > {output}
 
 
 
