@@ -36,7 +36,7 @@ rule extract_CDS:
     input:
         "%s/{species}.TranslationStart.bed"%ANNDIR, "%s/{species}.gtf"%ANNDIR
     output:
-         "%s/{CDS}/{species}.{annotation}.gtf"%ANNDIR
+         "%s/{species}/{species}.{annotation}.gtf"%ANNDIR
     shell:
         "awk 'index($3, \"CDS\")' {input[1]} > {output}" 
 
@@ -46,7 +46,7 @@ rule extract_CDS:
 #filter STR in the annotated regions
 rule filter:
     input:
-        "%s/{CDS}/{species}.{annotation}.gtf"%ANNDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR
+        "%s/{species}/{species}.{annotation}.gtf"%ANNDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR
     output:
          "%s/{species}/{species}.ann.{annotation}.bed"%ANNDIR
     shell:
