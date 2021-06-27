@@ -16,7 +16,7 @@ rule all:
     input:
         "%s/ann.{annotation}.TRSpecies_PeriodPercs.pdf"%YJDIR,
         "%s/ann.{annotation}.TRSpecies_GenomePerc.pdf"%YJDIR,
-        "%s/ann.{annotation}.TRSpecies_Density.pdf"%YJDIR,s
+        "%s/ann.{annotation}.TRSpecies_Density.pdf"%YJDIR,
         [("%s/ann.{annotation}.organize_{species}.csv"%YJDIR).format(species=species, annotation=config["annotation"]) for species in SPECIES]
         #[("%s/{species}.TranslationStart.bed"%ANNDIR).format(species=species, annotation=config["annotation"]) for species in SPECIES]
 
