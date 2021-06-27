@@ -51,7 +51,7 @@ rule gtf_to_bed:
 
 
 #filter STR in the annotated regions
-rule filter:
+rule intersect:
     input:
         "%s/CDS/{species}.{annotation}.bed"%ANNDIR, "%s/{species}/{species}.trf.bed"%TRFDIR
     output:
