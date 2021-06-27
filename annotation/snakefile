@@ -53,7 +53,7 @@ rule gtf_to_bed:
 #filter STR in the annotated regions
 rule filter:
     input:
-        "%s/CDS/{species}.{annotation}.gtf"%ANNDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR
+        "%s/CDS/{species}.{annotation}.bed"%ANNDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR
     output:
          "%s/{species}/{species}.ann.{annotation}.bed"%ANNDIR
     shell:
