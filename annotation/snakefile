@@ -53,12 +53,20 @@ rule gtf_to_bed:
 #filter STR in the annotated regions
 rule filter:
     input:
-        "%s/CDS/{species}.{annotation}.bed"%ANNDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR
+        "%s/CDS/{species}.{annotation}.bed"%ANNDIR, "%s/{species}/{species}.trf.bed"%TRFDIR
     output:
          "%s/{species}/{species}.ann.{annotation}.bed"%ANNDIR
     shell:
         "intersectBed -a {input[0]} -b {input[1]} -wa -u > {output}"
 
+#filter STR in the annotated regions
+rule filter:
+    input:
+        "%s/{species}/{species}.ann.{annotation}.bed"%ANNDIR
+    output:
+        "%s/{species}/{species}.filt.{annotation}.bed"%ANNDIR
+    shell:
+        "python3 filter_TRF_nopandas.py {input} {output}"
 
 #count for homopolymer, dinucleotide, etc.,
 rule str_count:
