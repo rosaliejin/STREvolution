@@ -40,7 +40,14 @@ rule extract_CDS:
     shell:
         "awk 'index($3, \"CDS\")' {input[1]} > {output}" 
 
-
+#convert gtf to bed format
+rule gtf_to_bed:
+    input:
+        "%s/CDS/{species}.{annotation}.gtf"%ANNDIR
+    output:
+         "%s/CDS/{species}.{annotation}.bed"%ANNDIR
+    shell:
+        "gtf2bed <{input}> {output}" 
 
 
 #filter STR in the annotated regions
