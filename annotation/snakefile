@@ -15,9 +15,9 @@ SPECIES =["ailMel1","aquChr2","bosTau7","canFam3","canFam3","ce11","chlSab2","ch
 
 rule all:
     input:
-        "%s/ann.{annotation}.TRSpecies_PeriodPercs.pdf"%YJDIR,
-        "%s/ann.{annotation}.TRSpecies_GenomePerc.pdf"%YJDIR,
-        "%s/ann.{annotation}.TRSpecies_Density.pdf"%YJDIR
+        [("%s/ann.{annotation}.TRSpecies_PeriodPercs.pdf"%YJDIR).format(annotation=config["annotation"])]
+        #"%s/ann.{annotation}.TRSpecies_GenomePerc.pdf"%YJDIR,
+        #"%s/ann.{annotation}.TRSpecies_Density.pdf"%YJDIR
         #[("%s/ann.{annotation}.organize_{species}.csv"%YJDIR).format(species=species, annotation=config["annotation"]) for species in SPECIES]
         #[("%s/{species}.TranslationStart.bed"%ANNDIR).format(species=species, annotation=config["annotation"]) for species in SPECIES]
 
