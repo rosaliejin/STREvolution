@@ -1,6 +1,6 @@
 TRFDIR="/storage/yjin/TreeofLife/trf"
 ANNDIR = "/storage/yjin/TreeofLife/annotation"
-YJDIR="/storage/mgymrek/TreeofLife/SnakemakeTest"
+YJDIR="/storage/yjin/TreeofLife/AnnResult"
 
 wildcard_constraints:
     species="[^.]*"
