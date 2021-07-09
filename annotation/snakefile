@@ -21,16 +21,7 @@ rule all:
         #[("%s/ann.{annotation}.organize_{species}.csv"%YJDIR).format(species=species, annotation=config["annotation"]) for species in SPECIES]
         #[("%s/{species}.TranslationStart.bed"%ANNDIR).format(species=species, annotation=config["annotation"]) for species in SPECIES]
 
-#search for the tranlastion start site and record the position
-rule transcription_start:
-    input:
-        "%s/{species}.gtf"%ANNDIR
-    output:
-         "%s/{species}.TranslationStart.bed"%ANNDIR
-    shell:
-        #"awk 'index($3, 'CDS')' {input} | awk '{{if($7 == '+'){{print $4}}else{{print $5}}}}' > {output}"
-        #"awk 'index($3, \"CDS\")' {input} | awk '{{if($7 == \"+\"){{print $4}}else{{print $5}}}}' > {output}"
-        "awk 'index($3, \"gene\")' {input} | awk '{{ print ($3==\"CDS\") ? $4 :  $5}}' > {output}" 
+
 
 #filter STR in the annotated regions
 rule extract_CDS:
@@ -113,9 +104,20 @@ rule combine_organize:
     shell:
         "cat {input} > {output}"
 
+#search for the transcription start site and record the position
+rule transcription_start:
+    input:
+        "%s/{species}.gtf"%ANNDIR, "%s/ann.{annotation}.organize.csv"%YJDIR
+    output:
+         "%s/{species}.TranscriptionStart.bed"%ANNDIR
+    shell:
+        #"awk 'index($3, 'CDS')' {input} | awk '{{if($7 == '+'){{print $4}}else{{print $5}}}}' > {output}"
+        #"awk 'index($3, \"CDS\")' {input} | awk '{{if($7 == \"+\"){{print $4}}else{{print $5}}}}' > {output}"
+        "awk 'index($3, \"gene\")' {input[0]} | awk '{{ print ($3==\"CDS\") ? $4 :  $5}}' > {output}" 
+
 rule plot:
     input:
-       "%s/ann.{annotation}.organize.csv"%YJDIR
+       "%s/ann.{annotation}.organize.csv"%YJDIR, "%s/{species}.TranscriptionStart.bed"%ANNDIR
     #if multiple figures are saved in this step, what should be the output?
     output:
         "%s/ann.{annotation}.TRSpecies_PeriodPercs.pdf"%YJDIR, "%s/ann.{annotation}.TRSpecies_GenomePerc.pdf"%YJDIR, "%s/ann.{annotation}.TRSpecies_Density.pdf"%YJDIR
