@@ -22,7 +22,7 @@ rule all:
         #[("%s/{species}.TranslationStart.bed"%ANNDIR).format(species=species, annotation=config["annotation"]) for species in SPECIES]
 
 #search for the tranlastion start site and record the position
-rule translation_start:
+rule transcription_start:
     input:
         "%s/{species}.gtf"%ANNDIR
     output:
@@ -30,7 +30,7 @@ rule translation_start:
     shell:
         #"awk 'index($3, 'CDS')' {input} | awk '{{if($7 == '+'){{print $4}}else{{print $5}}}}' > {output}"
         #"awk 'index($3, \"CDS\")' {input} | awk '{{if($7 == \"+\"){{print $4}}else{{print $5}}}}' > {output}"
-        "awk 'index($3, \"CDS\")' {input} | awk '{{ print ($3==\"CDS\") ? $4 :  $5}}' > {output}" 
+        "awk 'index($3, \"gene\")' {input} | awk '{{ print ($3==\"CDS\") ? $4 :  $5}}' > {output}" 
 
 #filter STR in the annotated regions
 rule extract_CDS:
