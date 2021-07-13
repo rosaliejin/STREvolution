@@ -22,23 +22,16 @@ rule all:
         #[("%s/ann.{annotation}.organize_{species}.csv"%YJDIR).format(species=species, annotation=config["annotation"]) for species in SPECIES]
         #[("%s/{species}.TranslationStart.bed"%ANNDIR).format(species=species, annotation=config["annotation"]) for species in SPECIES]
 
-#find TSS regions
-rule TSS:
-    input:
-        "%s/{species}.gtf"%ANNDIR
-    output:
-         "%s/{species}.tss.bed"%ANNDIR
-    shell:
-        "cat {input} | awk '($3==\"transcript\")' | grep \"protein_coding\" | cut -f 1,4,5,7 | awk '{{print $1 \"\t\" ($4==\"+\"?$2\"\t\"$2+1:$3\"\t\"$3+1) \"\t\" $4 }}' > {output}" 
+
 
 #filter STR in the annotated regions
 rule extract_CDS:
     input:
-        "%s/{species}.gtf"%ANNDIR, "%s/{species}.tss.bed"%ANNDIR
+        "%s/{species}.gtf"%ANNDIR
     output:
          "%s/{annotation}/{species}.{annotation}.gtf"%ANNDIR
     shell:
-        "awk 'index($3, \"CDS\")' {input[0]} > {output}" 
+        "awk 'index($3, \"CDS\")' {input} > {output}" 
 
 #convert gtf to bed format
 rule gtf_to_bed:

@@ -1,36 +1,27 @@
 TRFDIR="/storage/yjin/TreeofLife/trf"
-ANNDIR = "/storage/yjin/TreeofLife/annotation"
+ANNDIR = "/storage/yjin/TreeofLife/UCSCannotation"
 YJDIR="/storage/yjin/TreeofLife/AnnResult"
 
 wildcard_constraints:
     species="[^.]*"
 
-config["annotation"] = "CDS"
 
+SPECIES = ["wuhCor1","ce11","sacCer3","ailMel1","anoCar2","anoGam3","aptMan1","balAcu1","bosTau7","calJac1","calMil1","cavPor3","cerSim1","chlSab2","choHof1", "criGriChoV2","danRer11","dasNov3","dipOrd1","dm6","echTel2","equCab3","felCat9","fr2","gadMor1","galGal6","gorGor5","hg19","latCha1","loxAfr3","macFas5","melGal1","melUnd1","micMur2","mm10","musFur1","myoLuc2","nanPar1","nomLeu3","ochPri3","oreNil2","ornAna2","oryCun2","oryLat2","otoGar3","oviAri4","panPan3","panTro6","papAnu4","papHam1","ponAbe3","proCap1","pteVam1","rn6","rheMac10","sacCer3","saiBol1","sarHar1","sorAra2","speTri2","strPur2","susScr11","taeGut2","fr2","tarSyr2","tetNig2","thaSir1","triMan1","tupBel1","vicPac2","xenTro9"] 
 #SPECIES =["ailMel1","bosTau7","ce11","chlSab2","choHof1","danRer11","equCab3","hg19","melGal1","mm10","myoLuc2","nomLeu3","ornAna2","oviAri4","panPan3","panTro6","papAnu4","ponAbe2","proCap1","pteVam1","rheMac10","rn6","sacCer3","susScr11","taeGut2","tetNig2","xenTro9"]
-SPECIES =["ailMel1","aquChr2","bosTau7","calMil1","canFam3","canFam3","cavPor3","ce11","chlSab2","choHof1","chrPic1","criGriChoV2","danRer11","dasNov3","dipOrd1","dm6","echTel2","equCab3","felCat9","fr2","gadMor1","galGal6","gorGor5","hetGla2","hetGla2","hg19","latCha1","loxAfr3","macEug2","macFas5","melGal1","melUnd1","micMur2","mm10","musFur1","myoLuc2","nomLeu3","ochPri3","oreNil2","ornAna2","oryCun2","oryLat2","otoGar3","oviAri4","panPan3","panTro6","papAnu4","petMar3","ponAbe2","proCap1","pteVam1","rheMac10","rn6","sacCer3","saiBol1","sarHar1","sorAra2","speTri2","susScr11","taeGut2","tarSyr2","tetNig2","tupBel1","vicPac2","xenTro9"] 
+#SPECIES =["ailMel1","aquChr2","bosTau7","calMil1","canFam3","canFam3","cavPor3","ce11","chlSab2","choHof1","chrPic1","criGriChoV2","danRer11","dasNov3","dipOrd1","dm6","echTel2","equCab3","felCat9","fr2","gadMor1","galGal6","gorGor5","hetGla2","hetGla2","hg19","latCha1","loxAfr3","macEug2","macFas5","melGal1","melUnd1","micMur2","mm10","musFur1","myoLuc2","nomLeu3","ochPri3","oreNil2","ornAna2","oryCun2","oryLat2","otoGar3","oviAri4","panPan3","panTro6","papAnu4","petMar3","ponAbe2","proCap1","pteVam1","rheMac10","rn6","sacCer3","saiBol1","sarHar1","sorAra2","speTri2","susScr11","taeGut2","tarSyr2","tetNig2","tupBel1","vicPac2","xenTro9"] 
 # TODO this could eventually read from a file once this list gets very long
 
 #ANNOTATION = ["intron","coding"]
 
 rule all:
     input:
-        #[("%s/ann.{annotation}.TRSpecies_PeriodPercs.pdf"%YJDIR).format(annotation=config["annotation"])],
-        #[("%s/ann.{annotation}.TRSpecies_GenomePerc.pdf"%YJDIR).format(annotation=config["annotation"])],
-        #[("%s/ann.{annotation}.TRSpecies_Density.pdf"%YJDIR).format(annotation=config["annotation"])]
-        "%s/{species}.TranscriptionStart.bed"%ANNDIR
-        #[("%s/ann.{annotation}.organize_{species}.csv"%YJDIR).format(species=species, annotation=config["annotation"]) for species in SPECIES]
-        #[("%s/{species}.TranslationStart.bed"%ANNDIR).format(species=species, annotation=config["annotation"]) for species in SPECIES]
+        "%s/{species}.tss.bed"%ANNDIR
 
-
-
-#search for the transcription start site and record the position
-rule transcription_start:
+#find TSS regions
+rule TSS:
     input:
         "%s/{species}.gtf"%ANNDIR
     output:
-         "%s/{species}.TranscriptionStart.bed"%ANNDIR
+         "%s/{species}.tss.bed"%ANNDIR
     shell:
-        #"awk 'index($3, 'CDS')' {input} | awk '{{if($7 == '+'){{print $4}}else{{print $5}}}}' > {output}"
-        #"awk 'index($3, \"CDS\")' {input} | awk '{{if($7 == \"+\"){{print $4}}else{{print $5}}}}' > {output}"
-        "awk 'index($3, \"gene\")' {input[0]} | awk '{{ print ($3==\"gene\") ? $4 :  $5}}' > {output}" 
+        "cat {input} | awk '($3==\"transcript\")' | grep \"protein_coding\" | cut -f 1,4,5,7 | awk '{{print $1 \"\t\" ($4==\"+\"?$2\"\t\"$2+1:$3\"\t\"$3+1) \"\t\" $4 }}' > {output}" 
