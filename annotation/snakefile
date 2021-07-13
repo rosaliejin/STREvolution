@@ -1,6 +1,7 @@
 TRFDIR="/storage/yjin/TreeofLife/trf"
 ANNDIR = "/storage/yjin/TreeofLife/UCSCannotation"
 YJDIR="/storage/yjin/TreeofLife/AnnResult"
+GENOMESDIR="/storage/yjin/TreeofLife/data"
 
 wildcard_constraints:
     species="[^.]*"
@@ -73,7 +74,7 @@ rule str_count:
 #count the length of entire genome
 rule genome_length:
     input:
-        "%s/{species}/{species}.ann.{annotation}.str_count.txt"%YJDIR, "%s/{annotation}/{species}/{species}.filt.{annotation}.bed"%ANNDIR
+        "%s/{species}/{species}.ann.{annotation}.str_count.txt"%YJDIR, "%s/{species}/{species}.fa.fai"%GENOMESDIR
     output:
         "%s/{species}/{species}.ann.{annotation}.genome_length.txt"%YJDIR
     shell:
