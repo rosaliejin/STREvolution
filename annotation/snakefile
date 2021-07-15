@@ -6,7 +6,7 @@ GENOMESDIR="/storage/yjin/TreeofLife/data"
 wildcard_constraints:
     species="[^.]*"
 
-config["annotation"] = "CDS"
+config["annotation"] = "exon"
 
 SPECIES = ["wuhCor1","ce11","sacCer3","ailMel1","anoCar2","anoGam3","balAcu1","bosTau7","calJac1","calMil1","cavPor3","cerSim1","chlSab2","choHof1", "criGriChoV2","danRer11","dasNov3","dipOrd1","dm6","echTel2","equCab3","felCat9","fr2","gadMor1","galGal6","gorGor5","hg19","latCha1","loxAfr3","macFas5","melGal1","melUnd1","micMur2","mm10","musFur1","myoLuc2","nanPar1","nomLeu3","ochPri3","oreNil2","ornAna2","oryCun2","oryLat2","otoGar3","oviAri4","panPan3","panTro6","papAnu4","papHam1","ponAbe3","proCap1","pteVam1","rn6","rheMac10","sacCer3","saiBol1","sorAra2","sarHar1","speTri2","strPur2","susScr11","taeGut2","fr2","tarSyr2","tetNig2","thaSir1","triMan1","tupBel1","vicPac2","xenTro9"] 
 #SPECIES =["ailMel1","bosTau7","ce11","chlSab2","choHof1","danRer11","equCab3","hg19","melGal1","mm10","myoLuc2","nomLeu3","ornAna2","oviAri4","panPan3","panTro6","papAnu4","ponAbe2","proCap1","pteVam1","rheMac10","rn6","sacCer3","susScr11","taeGut2","tetNig2","xenTro9"]
@@ -38,7 +38,7 @@ rule extract_CDS:
     output:
          "%s/{annotation}/{species}.{annotation}.gtf"%ANNDIR
     shell:
-        "awk 'index($3, \"CDS\")' {input} > {output}" 
+        "awk 'index($3, \"exon\")' {input} > {output}" 
 
 #convert gtf to bed format
 rule gtf_to_bed:
