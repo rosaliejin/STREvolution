@@ -19,7 +19,13 @@ rule all:
     input:
         [("%s/ann.{annotation}.TRSpecies_PeriodPercs.pdf"%YJDIR).format(annotation=config["annotation"])],
         [("%s/ann.{annotation}.TRSpecies_GenomePerc.pdf"%YJDIR).format(annotation=config["annotation"])],
-        [("%s/ann.{annotation}.TRSpecies_Density.pdf"%YJDIR).format(annotation=config["annotation"])]
+        [("%s/ann.{annotation}.TRSpecies_Density.pdf"%YJDIR).format(annotation=config["annotation"])],
+        [("%s/ann.{annotation}.TRSpecies_homopolymer.pdf"%YJDIR).format(annotation=config["annotation"])],
+        [("%s/ann.{annotation}.TRSpecies_dinucleotide.pdf"%YJDIR).format(annotation=config["annotation"])],
+        [("%s/ann.{annotation}.TRSpecies_trinucleotide.pdf"%YJDIR).format(annotation=config["annotation"])],
+        [("%s/ann.{annotation}.TRSpecies_tetranucleotide.pdf"%YJDIR).format(annotation=config["annotation"])],
+        [("%s/ann.{annotation}.TRSpecies_pentanucleotide.pdf"%YJDIR).format(annotation=config["annotation"])],
+        [("%s/ann.{annotation}.TRSpecies_hexanucleotide.pdf"%YJDIR).format(annotation=config["annotation"])]
         #[("%s/ann.{annotation}.organize_{species}.csv"%YJDIR).format(species=species, annotation=config["annotation"]) for species in SPECIES]
         #[("%s/{species}.TranslationStart.bed"%ANNDIR).format(species=species, annotation=config["annotation"]) for species in SPECIES]
 
@@ -113,6 +119,6 @@ rule plot:
        "%s/ann.{annotation}.organize.csv"%YJDIR
     #if multiple figures are saved in this step, what should be the output?
     output:
-        "%s/ann.{annotation}.TRSpecies_PeriodPercs.pdf"%YJDIR, "%s/ann.{annotation}.TRSpecies_GenomePerc.pdf"%YJDIR, "%s/ann.{annotation}.TRSpecies_Density.pdf"%YJDIR
+        "%s/ann.{annotation}.TRSpecies_PeriodPercs.pdf"%YJDIR, "%s/ann.{annotation}.TRSpecies_GenomePerc.pdf"%YJDIR, "%s/ann.{annotation}.TRSpecies_Density.pdf"%YJDIR, "%s/ann.{annotation}.TRSpecies_homopolymer.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_dinucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_trinucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_tetranucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_pentanucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_hexanucleotide.pdf"%YJDIR
     shell:
         "python \"Tree_Of_Life_Graph.py\" {input[0]} {output}"
