@@ -17,11 +17,20 @@ infile = sys.argv[1]
 out_period_perc = sys.argv[2]
 out_genome_perc = sys.argv[3]
 out_density = sys.argv[4]
+out_1 = sys.argv[5]
+out_2 = sys.argv[6]
+out_3 = sys.argv[7]
+out_4 = sys.argv[8]
+out_5 = sys.argv[9]
+out_6 = sys.argv[10]
 
 
 # Load ordered species list
-#species_list = [item.strip() for item in open("TReeOfLife_OrderedSpeciesList.txt", "r").readlines()]
-#species_order = dict(zip(species_list, range(1, len(species_list)+1)))
+species_list = [item.strip() for item in open("STR_SpeciesList.txt", "r").readlines()]
+print(species_list)
+#species_list = [item.replace("\n","") for item in open("SpeciesList.txt", "r").readlines()]
+species_order = dict(zip(species_list, range(1, len(species_list)+1)))
+
 
 # Load data and order by species order
 
@@ -29,9 +38,8 @@ out_density = sys.argv[4]
 
 col_name = ["name","homopolymers","dinucleotide","trinucleotide","tetranucleotide","pentanucleotide","hexanucleotide","per1.perc","per2.perc","per3.perc","per4.perc","per5.perc","per6.perc","genome_length","str_base","str.perc.bp","str.num","str.density"]
 data = pd.read_csv(infile,header = None, names = col_name)
-
-#data["order"] = data["name"].apply(lambda x: species_order[x])
-#data = data.sort_values("order")
+data["order"] = data["name"].apply(lambda x: species_order[x])
+data = data.sort_values("order")
 
 # Remove species we don't want. e.g. Ebola
 #rmspecies = ["Ebola_virus"]
@@ -51,7 +59,7 @@ data
 # Plot repeat percentages
 
 fig = plt.figure()
-fig.set_size_inches((15, 4))
+fig.set_size_inches((15, 8))
 ax = fig.add_subplot(111)
 
 bottoms = np.array([0]*data.shape[0])
@@ -79,7 +87,7 @@ fig.savefig(out_period_perc)
 # Plot repeat density
 
 fig = plt.figure()
-fig.set_size_inches((15, 4))
+fig.set_size_inches((15, 8))
 ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["str.density"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
@@ -88,7 +96,7 @@ fig.savefig(out_density)
 
 
 fig = plt.figure()
-fig.set_size_inches((15, 4))
+fig.set_size_inches((15, 8))
 ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["str.perc.bp"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
@@ -96,69 +104,68 @@ ax.set_xticklabels(data["name"], rotation=90);
 fig.savefig(out_genome_perc)
 
 fig = plt.figure()
-fig.set_size_inches((15, 4))
+fig.set_size_inches((15, 8))
 ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["homopolymers"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
 ax.set_xticklabels(data["name"], rotation=90);
-fig.savefig("TRSpecies_homopolymer.pdf")
-
+fig.savefig(out_1)
 
 # In[44]:
 
 
 fig = plt.figure()
-fig.set_size_inches((15, 4))
+fig.set_size_inches((15, 8))
 ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["dinucleotide"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
 ax.set_xticklabels(data["name"], rotation=90);
-fig.savefig("TRSpecies_dinucleotide.pdf")
+fig.savefig(out_2)
 
 
 # In[45]:
 
 
 fig = plt.figure()
-fig.set_size_inches((15, 4))
+fig.set_size_inches((15, 8))
 ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["trinucleotide"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
 ax.set_xticklabels(data["name"], rotation=90);
-fig.savefig("TRSpecies_trinucleotide.pdf")
+fig.savefig(out_3)
 
 
 # In[46]:
 
 
 fig = plt.figure()
-fig.set_size_inches((15, 4))
+fig.set_size_inches((15, 8))
 ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["tetranucleotide"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
 ax.set_xticklabels(data["name"], rotation=90);
-fig.savefig("TRSpecies_tetranucleotide.pdf")
+fig.savefig(out_4)
 
 
 # In[47]:
 
 
 fig = plt.figure()
-fig.set_size_inches((15, 4))
+fig.set_size_inches((15, 8))
 ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["pentanucleotide"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
 ax.set_xticklabels(data["name"], rotation=90);
-fig.savefig("TRSpecies_pentanucleotide.pdf")
+fig.savefig(out_5)
 
 
 # In[48]:
 
 
 fig = plt.figure()
-fig.set_size_inches((15, 4))
+fig.set_size_inches((15, 8))
 ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["hexanucleotide"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
 ax.set_xticklabels(data["name"], rotation=90);
-fig.savefig("TRSpecies_hexanucleotide.pdf")
+fig.savefig(out_6)
