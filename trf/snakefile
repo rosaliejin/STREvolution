@@ -11,7 +11,7 @@ SPECIES = ["eboVir3","wuhCor1","ce11","sacCer3","ailMel1","anoCar2","anoGam3","a
 
 rule all:
     input:
-       "%s/organize1.csv"%YJDIR
+       [("%s/organize_{species}.csv"%YJDIR).format(species=species) for species in SPECIES]
 
 
 
@@ -64,10 +64,3 @@ rule organize:
     shell:
          "python \"STREvolution_Stat.py\" {input[1]} {input[2]} {input[0]} {wildcards.species} {output}"
 
-rule combine_organize:
-    input:
-         [("%s/organize_{species}.csv"%YJDIR).format(species=species) for species in SPECIES]
-    output:
-        "%s/organize1.csv"%YJDIR
-    shell:
-        "cat {input} > {output}"
