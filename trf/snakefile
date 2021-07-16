@@ -22,7 +22,7 @@ rule all:
 	#"%s/TRSpecies_tetranucleotide.pdf"%YJDIR,
 	#"%s/TRSpecies_pentanucleotide.pdf"%YJDIR,
 	#"%s/TRSpecies_hexanucleotide.pdf"%YJDIR
-    "%s/organize1.csv"%YJDIR
+        "%s/organize1.csv"%YJDIR
 
 rule index_fa:
     input:
