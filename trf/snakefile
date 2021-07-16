@@ -20,7 +20,7 @@ rule filter_trf:
     input:
         "%s/{species}/{species}.trf.bed"%TRFDIR
     output:
-        "%s/{species}/{species}.trf.filt.bed"%TRFDIR
+        "%s/{species}.trf.filt.bed"%TRFDIR
     shell:
         "python3 filter_TRF_nopandas.py {input} {output}"
 
@@ -31,7 +31,7 @@ rule filter_trf:
 #count for homopolymer, dinucleotide, etc.,
 rule str_count:
     input:
-        "%s/{species}/{species}.trf.filt.bed"%TRFDIR 
+        "%s/{species}.trf.filt.bed"%TRFDIR 
     output:
          "%s/{species}/{species}.str_count.txt"%YJDIR
     shell:
