@@ -11,7 +11,7 @@ SPECIES = ["eboVir3","wuhCor1","ce11","sacCer3","ailMel1","anoCar2","anoGam3","a
 
 rule all:
     input:
-       "%s/{species}/{species}.trf.filt.bed"%TRFDIR
+       "%s/organize_{species}.csv"%YJDIR
 
 
 
