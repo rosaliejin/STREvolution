@@ -61,7 +61,7 @@ rule all:
 #filter STR in the annotated regions
 rule intersect:
     input:
-        "%s/{species}_{annotation}.bed"%ANNDIR
+        "%s/{species}_{annotation}.bed"%ANNDIR, "%s/{species}/{species}.trf.bed"%TRFDIR
     output:
          "%s/{annotation}/{species}/{species}.ann.{annotation}.bed"%ANNDIR
     shell:
