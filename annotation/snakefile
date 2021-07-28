@@ -32,23 +32,31 @@ rule all:
 
 
 #filter STR in the annotated regions
-rule extract_CDS:
+#rule extract_CDS:
+#    input:
+#        "%s/{species}.gtf"%ANNDIR
+#    output:
+#         "%s/{annotation}/{species}.{annotation}.gtf"%ANNDIR
+#    shell:
+#        "awk 'index($3, \"exon\")' {input} > {output}" 
+
+#convert gtf to bed format
+#rule gtf_to_bed:
+#    input:
+#        "%s/{annotation}/{species}.{annotation}.gtf"%ANNDIR
+#    output:
+#         "%s/{annotation}/{species}.{annotation}.bed"%ANNDIR
+#    shell:
+#        "gtf2bed <{input}> {output}" 
+
+#filter annotated regions
+rule extract:
     input:
         "%s/{species}.gtf"%ANNDIR
     output:
-         "%s/{annotation}/{species}.{annotation}.gtf"%ANNDIR
+         "%s/{species}_{annotation}.bed"%ANNDIR
     shell:
-        "awk 'index($3, \"exon\")' {input} > {output}" 
-
-#convert gtf to bed format
-rule gtf_to_bed:
-    input:
-        "%s/{annotation}/{species}.{annotation}.gtf"%ANNDIR
-    output:
-         "%s/{annotation}/{species}.{annotation}.bed"%ANNDIR
-    shell:
-        "gtf2bed <{input}> {output}" 
-
+        "intersectBed -a {input[1]} -b {input[0]} -wa -u > {output}"
 
 #filter STR in the annotated regions
 rule intersect:
