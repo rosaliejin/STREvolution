@@ -50,18 +50,18 @@ rule all:
 #        "gtf2bed <{input}> {output}" 
 
 #filter annotated regions
-rule extract:
-    input:
-        "%s/{species}.gtf"%ANNDIR
-    output:
-         "%s/{species}_{annotation}.bed"%ANNDIR
-    shell:
-        "intersectBed -a {input[1]} -b {input[0]} -wa -u > {output}"
+#rule extract:
+#    input:
+#        "%s/{species}.gtf"%ANNDIR
+#    output:
+#         "%s/{species}_{annotation}.bed"%ANNDIR
+#    shell:
+#        "intersectBed -a {input[1]} -b {input[0]} -wa -u > {output}"
 
 #filter STR in the annotated regions
 rule intersect:
     input:
-        "%s/{annotation}/{species}.{annotation}.bed"%ANNDIR, "%s/{species}/{species}.trf.bed"%TRFDIR
+        "%s/{species}_{annotation}.bed"%ANNDIR
     output:
          "%s/{annotation}/{species}/{species}.ann.{annotation}.bed"%ANNDIR
     shell:
