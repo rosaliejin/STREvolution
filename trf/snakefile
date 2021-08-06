@@ -24,8 +24,8 @@ rule all:
 	#"%s/TRSpecies_tetranucleotide.pdf"%YJDIR,
 	#"%s/TRSpecies_pentanucleotide.pdf"%YJDIR,
 	#"%s/TRSpecies_hexanucleotide.pdf"%YJDIR
-        #"%s/organize3.csv"%YJDIR
-        "%s/{species}/{species}.trf.filt.bed"%TRFDIR
+        "%s/organize3.csv"%YJDIR
+        
 
 rule index_fa:
     input:
