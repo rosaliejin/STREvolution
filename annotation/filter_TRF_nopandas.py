@@ -200,6 +200,7 @@ with open(in_bed_file, 'r') as in_bed:
     line_list = []; lnum = 1
     line = in_bed.readline().strip().split('\t')
     if line=='':
+        open(out_bed_file, 'w')
         exit()
     curr_chr = line[0]
     line_list.append(data_line(line + [lnum]))
