@@ -199,6 +199,8 @@ with open(in_bed_file, 'r') as in_bed:
     # set up the first line list from the first line of the file
     line_list = []; lnum = 1
     line = in_bed.readline().strip().split('\t')
+    if line=='':
+        exit()
     curr_chr = line[0]
     line_list.append(data_line(line + [lnum]))
     while True:
