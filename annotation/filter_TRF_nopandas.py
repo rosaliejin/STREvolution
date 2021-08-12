@@ -199,7 +199,8 @@ with open(in_bed_file, 'r') as in_bed:
     # set up the first line list from the first line of the file
     line_list = []; lnum = 1
     line = in_bed.readline().strip().split('\t')
-    if line=='':
+    first_char = in_bed.read(1) 
+    if not first_char:
         open(out_bed_file, 'w')
         exit()
     curr_chr = line[0]
