@@ -109,7 +109,7 @@ rule combine_organize:
     input:
          [("%s/organize_{species}.csv"%YJDIR).format(species=species) for species in SPECIES]
     output:
-        "%s/organize3.csv"%YJDIR
+        "%s/organize.csv"%YJDIR
     shell:
         "cat {input} > {output}"
 
