@@ -6,7 +6,7 @@ YJDIR="/storage/mgymrek/TReeofLife/SnakemakeTest"
 wildcard_constraints:
     species="[^.]*"
 
-SPECIES = ["eboVir3","wuhCor1","ce11","sacCer3","ailMel1","anoCar2","anoGam3","apiMel2","aplCal1","aptMan1","aquChr2","balAcu1","braFlo1","caePb2","caeJap1","caeRem3","calMil1","cavPor3","cerSim1","chlSab2","choHof1","chrPic1", "criGriChoV2","danRer11","dasNov3","dipOrd1","dm6","droPer1","droSec1","droSim1","echTel2","equCab3","felCat9","gadMor1","geoFor1","galGal6","hetGla2","latCha1","loxAfr3","macFas5","macEug2","manPen1","melUnd1","micMur2","musFur1","myoLuc2","nanPar1","nasLar1","nomLeu3","ochPri3","oreNil2","ornAna2","oryCun2","oryLat2","otoGar3","oviAri4","panPan3","panTro6","papAnu4","papHam1","petMar3","priPac1","ponAbe2","proCap1","pteVam1","rheMac10","sacCer3","saiBol1","sarHar1","sorAra2","speTri2","strPur2","susScr11","taeGut2","fr2","tarSyr2","tetNig2","thaSir1","triMan1","tupBel1","vicPac2",'bosTau9','calJac4','canFam5','ci3','dp4','droAna3','droEre2','droGri2','droMoj3','droVir3','fr3','gorGor6','melGal5','rn7','xenTro10','hg19'] 
+SPECIES = ["eboVir3","wuhCor1","ce11","sacCer3","ailMel1","anoCar2","anoGam3","apiMel2","aplCal1","aptMan1","aquChr2","balAcu1","braFlo1","caePb2","caeJap1","caeRem3","calMil1","cavPor3","cerSim1","chlSab2","choHof1","chrPic1", "criGriChoV2","danRer11","dasNov3","dipOrd1","dm6","droPer1","droSec1","droSim1","echTel2","equCab3","felCat9","gadMor1","geoFor1","galGal6","hetGla2","latCha1","loxAfr3","macFas5","macEug2","manPen1","melUnd1","micMur2","musFur1","myoLuc2","nanPar1","nasLar1","nomLeu3","ochPri3","oreNil2","ornAna2","oryCun2","oryLat2","otoGar3","oviAri4","panPan3","panTro6","papAnu4","papHam1","petMar3","priPac1","ponAbe2","proCap1","pteVam1","rheMac10","sacCer3","saiBol1","sarHar1","sorAra2","speTri2","strPur2","susScr11","taeGut2","fr2","tarSyr2","tetNig2","thaSir1","triMan1","tupBel1","vicPac2",'bosTau9','calJac4','canFam5','ci3','dp4','droAna3','droEre2','droGri2','droMoj3','droVir3','fr3','gorGor6','melGal5','rn7','xenTro10'] 
 #SPECIES = ["eboVir3","wuhCor1","ce11","sacCer3","ailMel1","anoCar2","anoGam3","apiMel2","aplCal1","aptMan1","aquChr2","balAcu1","bosTau7","braFlo1","caePb2","caeJap1","caeRem3","calJac1","calMil1","canFam3","cavPor3","cerSim1","chlSab2","choHof1","chrPic1", "ci2","criGriChoV2"]
 #SPECIES = ["danRer11","dasNov3","dipOrd1","dm6","droPer1","dp3","droSec1","droSim1","echTel2","equCab3","felCat9","fr2","gadMor1","geoFor1","galGal6","gorGor5","hetGla2","hg19","latCha1","loxAfr3","macFas5","macEug2","manPen1","melGal1","melUnd1","micMur2","mm10","musFur1","myoLuc2"]
 #SPECIES = ["nanPar1","nasLar1","nomLeu3","ochPri3","oreNil2","ornAna2","oryCun2","oryLat2","otoGar3","oviAri4","panPan3","panTro6","papAnu4","papHam1","petMar3","ponAbe3","priPac1","ponAbe2","proCap1","pteVam1","rn6","rheMac10","sacCer3","saiBol1","sarHar1","sorAra2","speTri2","strPur2","susScr11","taeGut2","fr2","tarSyr2","tetNig2","thaSir1","triMan1","tupBel1","vicPac2","xenTro9","droAna2","droEre1", "droGri1","droMoj2","droVir2"] 
@@ -15,17 +15,17 @@ SPECIES = ["eboVir3","wuhCor1","ce11","sacCer3","ailMel1","anoCar2","anoGam3","a
 
 rule all:
     input:
-        "%s/TRSpecies_PeriodPercs.pdf"%YJDIR,
-        "%s/TRSpecies_GenomePerc.pdf"%YJDIR,
-        "%s/TRSpecies_Density.pdf"%YJDIR,
+        #"%s/TRSpecies_PeriodPercsNew.pdf"%YJDIR,
+        #"%s/TRSpecies_GenomePercNew.pdf"%YJDIR,
+        #"%s/TRSpecies_DensityNew.pdf"%YJDIR,
         #[("%s/organize_{species}.csv"%YJDIR).format(species=species) for species in SPECIES]
-	"%s/TRSpecies_homopolymer.pdf"%YJDIR,
-	"%s/TRSpecies_dinucleotide.pdf"%YJDIR,
-	"%s/TRSpecies_trinucleotide.pdf"%YJDIR,
-	"%s/TRSpecies_tetranucleotide.pdf"%YJDIR,
-	"%s/TRSpecies_pentanucleotide.pdf"%YJDIR,
-	"%s/TRSpecies_hexanucleotide.pdf"%YJDIR
-        #"%s/organize3.csv"%YJDIR
+	#"%s/TRSpecies_homopolymer.pdf"%YJDIR,
+	#"%s/TRSpecies_dinucleotide.pdf"%YJDIR,
+	#"%s/TRSpecies_trinucleotide.pdf"%YJDIR,
+	#"%s/TRSpecies_tetranucleotide.pdf"%YJDIR,
+	#"%s/TRSpecies_pentanucleotide.pdf"%YJDIR,
+	#"%s/TRSpecies_hexanucleotide.pdf"%YJDIR
+        "%s/organize3.csv"%YJDIR
         
 
 rule index_fa:
@@ -96,20 +96,30 @@ rule str_base:
     shell:
          "awk '{{print length($6)}}'  {input[1]} | awk '{{sum+=$1 }}END{{ print sum }}'> {output}"
 
+#count the length of each repeated unit
+rule repeat_length:
+    input:
+        "%s/{species}/{species}.str_base.txt"%YJDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR
+    output:
+        "%s/{species}/{species}.repeat_length.txt"%YJDIR
+    shell:
+         "for period in $(seq 1 6); do awk -v\"period=$period\" '$4==period'  {input} | awk '{{print length($6)}}' | awk '{{sum+=$1 }}END{{ print sum/NR }}'; done > {output}"
+
+
 #Creating table to organize annalysis
 rule organize:
     input:
-        "%s/{species}/{species}.str_base.txt"%YJDIR, "%s/{species}/{species}.str_count.txt"%YJDIR, "%s/{species}/{species}.genome_length.txt"%YJDIR 
+        "%s/{species}/{species}.str_base.txt"%YJDIR, "%s/{species}/{species}.str_count.txt"%YJDIR, "%s/{species}/{species}.genome_length.txt"%YJDIR, "%s/{species}/{species}.repeat_length.txt"%YJDIR
     output:
         "%s/organize_{species}.csv"%YJDIR
     shell:
-         "python \"STREvolution_Stat.py\" {input[1]} {input[2]} {input[0]} {wildcards.species} {output}"
+         "python \"STREvolution_Stat.py\" {input[1]} {input[2]} {input[0]} {wildcards.species} {output} {input[3]}"
 
 rule combine_organize:
     input:
          [("%s/organize_{species}.csv"%YJDIR).format(species=species) for species in SPECIES]
     output:
-        "%s/organize.csv"%YJDIR
+        "%s/organize3.csv"%YJDIR
     shell:
         "cat {input} > {output}"
 

@@ -36,7 +36,7 @@ species_order = dict(zip(species_list, range(1, len(species_list)+1)))
 
 #data = pd.read_txt(sys.argv[1])
 
-col_name = ["name","homopolymers","dinucleotide","trinucleotide","tetranucleotide","pentanucleotide","hexanucleotide","per1.perc","per2.perc","per3.perc","per4.perc","per5.perc","per6.perc","genome_length","str_base","str.perc.bp","str.num","str.density"]
+col_name = ["name","homopolymers","dinucleotide","trinucleotide","tetranucleotide","pentanucleotide","hexanucleotide","per1.perc","per2.perc","per3.perc","per4.perc","per5.perc","per6.perc","genome_length","str_base","str.perc.bp","str.num","str.density","ave_homopolymers","ave_dinucleotide","ave_trinucleotide","ave_tetranucleotide","ave_pentanucleotide","ave_hexanucleotide"]
 data = pd.read_csv(infile,header = None, names = col_name)
 data["order"] = data["name"].apply(lambda x: species_order[x])
 data = data.sort_values("order")
@@ -106,7 +106,7 @@ fig.savefig(out_genome_perc)
 fig = plt.figure()
 fig.set_size_inches((15, 8))
 ax = fig.add_subplot(111)
-ax.bar(range(data.shape[0]), data["homopolymers"], color="black", edgecolor="white");
+ax.bar(range(data.shape[0]), data["ave_homopolymers"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
 ax.set_xticklabels(data["name"], rotation=90);
 fig.savefig(out_1)
@@ -117,7 +117,7 @@ fig.savefig(out_1)
 fig = plt.figure()
 fig.set_size_inches((15, 8))
 ax = fig.add_subplot(111)
-ax.bar(range(data.shape[0]), data["dinucleotide"], color="black", edgecolor="white");
+ax.bar(range(data.shape[0]), data["ave_dinucleotide"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
 ax.set_xticklabels(data["name"], rotation=90);
 fig.savefig(out_2)
@@ -129,7 +129,7 @@ fig.savefig(out_2)
 fig = plt.figure()
 fig.set_size_inches((15, 8))
 ax = fig.add_subplot(111)
-ax.bar(range(data.shape[0]), data["trinucleotide"], color="black", edgecolor="white");
+ax.bar(range(data.shape[0]), data["ave_trinucleotide"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
 ax.set_xticklabels(data["name"], rotation=90);
 fig.savefig(out_3)
@@ -141,7 +141,7 @@ fig.savefig(out_3)
 fig = plt.figure()
 fig.set_size_inches((15, 8))
 ax = fig.add_subplot(111)
-ax.bar(range(data.shape[0]), data["tetranucleotide"], color="black", edgecolor="white");
+ax.bar(range(data.shape[0]), data["ave_tetranucleotide"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
 ax.set_xticklabels(data["name"], rotation=90);
 fig.savefig(out_4)
@@ -153,7 +153,7 @@ fig.savefig(out_4)
 fig = plt.figure()
 fig.set_size_inches((15, 8))
 ax = fig.add_subplot(111)
-ax.bar(range(data.shape[0]), data["pentanucleotide"], color="black", edgecolor="white");
+ax.bar(range(data.shape[0]), data["ave_pentanucleotide"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
 ax.set_xticklabels(data["name"], rotation=90);
 fig.savefig(out_5)
@@ -165,7 +165,7 @@ fig.savefig(out_5)
 fig = plt.figure()
 fig.set_size_inches((15, 8))
 ax = fig.add_subplot(111)
-ax.bar(range(data.shape[0]), data["hexanucleotide"], color="black", edgecolor="white");
+ax.bar(range(data.shape[0]), data["ave_hexanucleotide"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
 ax.set_xticklabels(data["name"], rotation=90);
 fig.savefig(out_6)

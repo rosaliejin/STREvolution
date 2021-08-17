@@ -7,7 +7,7 @@ import sys
 import csv
 
 file = open(sys.argv[1],"r")
-strcount= [] # counts of # STRs for each period
+strcount= [] # counts of # STRs for each repeated units
 while True:
     line = file.readline()
     if line == "":
@@ -31,6 +31,15 @@ else:
     strbase= int(f)
 #strbase= float(file.readline().replace("\n",""))
 
+file = open(sys.argv[5],"r")
+repeatlength= [] # counts of # STRs for each repeated units
+while True:
+    line = file.readline()
+    if line == "":
+        break
+    else:
+        repeatlength.append(float(line))
+
 species_name= sys.argv[4]
 
 #filename = sys.argv[5]
@@ -40,6 +49,7 @@ filepath = sys.argv[5]
 # In[ ]:
 strnumsum = sum(strcount)
 
+#percentage for each repeated unites
 strpercent = []
 for i in range(0,len(strcount)):
     if strnumsum == 0:
@@ -65,6 +75,9 @@ if genomelength == 0:
     row.append(0)
 else:
     row.append(strnumsum/float(genomelength))
+
+for a in repeatlength:
+    row.append(a)
 
 final.append(species_name)
 

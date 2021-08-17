@@ -96,14 +96,24 @@ rule str_base:
     shell:
          "awk '{{print length($6)}}'  {input[1]} | awk '{{sum+=$1 }}END{{ print sum }}'> {output}"
 
+#count the length of each repeated unit
+rule repeat_length:
+    input:
+        "%s/{species}/{species}.str_base.txt"%YJDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR
+    output:
+        "%s/{species}/{species}.repeat_length.txt"%YJDIR
+    shell:
+         "for period in $(seq 1 6); do awk -v\"period=$period\" '$4==period'  {input} | awk '{{print length($6)}}' | awk '{{sum+=$1 }}END{{ print sum/NR }}'; done > {output}"
+
+
 #Creating table to organize annalysis
 rule organize:
     input:
-        "%s/{species}/{species}.str_base.txt"%YJDIR, "%s/{species}/{species}.str_count.txt"%YJDIR, "%s/{species}/{species}.genome_length.txt"%YJDIR 
+        "%s/{species}/{species}.str_base.txt"%YJDIR, "%s/{species}/{species}.str_count.txt"%YJDIR, "%s/{species}/{species}.genome_length.txt"%YJDIR, "%s/{species}/{species}.repeat_length.txt"%YJDIR
     output:
         "%s/organize_{species}.csv"%YJDIR
     shell:
-         "python \"STREvolution_Stat.py\" {input[1]} {input[2]} {input[0]} {wildcards.species} {output}"
+         "python \"STREvolution_Stat.py\" {input[1]} {input[2]} {input[0]} {wildcards.species} {output} {input[3]}"
 
 rule combine_organize:
     input:
