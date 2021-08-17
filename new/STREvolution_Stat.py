@@ -31,7 +31,7 @@ else:
     strbase= int(f)
 #strbase= float(file.readline().replace("\n",""))
 
-file = open(sys.argv[5],"r")
+file = open(sys.argv[6],"r")
 repeatlength= [] # counts of # STRs for each repeated units
 while True:
     line = file.readline()
