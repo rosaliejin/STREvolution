@@ -19,12 +19,12 @@ rule all:
         #"%s/TRSpecies_GenomePercNew.pdf"%YJDIR,
         #"%s/TRSpecies_DensityNew.pdf"%YJDIR,
         #[("%s/organize_{species}.csv"%YJDIR).format(species=species) for species in SPECIES]
-	"%s/TRSpecies_homopolymer.pdf"%YJDIR,
-	"%s/TRSpecies_dinucleotide.pdf"%YJDIR,
-	"%s/TRSpecies_trinucleotide.pdf"%YJDIR,
-	"%s/TRSpecies_tetranucleotide.pdf"%YJDIR,
-	"%s/TRSpecies_pentanucleotide.pdf"%YJDIR,
-	"%s/TRSpecies_hexanucleotide.pdf"%YJDIR
+	    "%s/TRSpecies_homopolymer.pdf"%YJDIR,
+	    "%s/TRSpecies_dinucleotide.pdf"%YJDIR,
+	    "%s/TRSpecies_trinucleotide.pdf"%YJDIR,
+	    "%s/TRSpecies_tetranucleotide.pdf"%YJDIR,
+	    "%s/TRSpecies_pentanucleotide.pdf"%YJDIR,
+	    "%s/TRSpecies_hexanucleotide.pdf"%YJDIR
         #"%s/organize3.csv"%YJDIR
         
 
