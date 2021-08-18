@@ -48,7 +48,7 @@ noncodingIntronFName = args.output + "_noncodingintrons.bed"
 genesRead = 0
 
 # parameters that should be passed via the cmd line
-useBlocks = True
+useBlocks = False
 
 
 #terminate if output files exist
