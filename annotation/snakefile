@@ -18,9 +18,9 @@ SPECIES = ["otoGar3", "micMur2", "tarSyr2", "saiBol1", "calJac4", "nomLeu3","hg1
 
 rule all:
     input:
-        [("%s/ann.{annotation}.TRSpecies_PeriodPercs.pdf"%YJDIR).format(annotation=config["annotation"])],
-        [("%s/ann.{annotation}.TRSpecies_GenomePerc.pdf"%YJDIR).format(annotation=config["annotation"])],
-        [("%s/ann.{annotation}.TRSpecies_Density.pdf"%YJDIR).format(annotation=config["annotation"])],
+        [("%s/ann.{annotation}.-V.TRSpecies_PeriodPercs.pdf"%YJDIR).format(annotation=config["annotation"])],
+        [("%s/ann.{annotation}.-V.TRSpecies_GenomePerc.pdf"%YJDIR).format(annotation=config["annotation"])],
+        [("%s/ann.{annotation}.-V.TRSpecies_Density.pdf"%YJDIR).format(annotation=config["annotation"])],
         [("%s/ann.{annotation}.TRSpecies_homopolymer.pdf"%YJDIR).format(annotation=config["annotation"])],
         [("%s/ann.{annotation}.TRSpecies_dinucleotide.pdf"%YJDIR).format(annotation=config["annotation"])],
         [("%s/ann.{annotation}.TRSpecies_trinucleotide.pdf"%YJDIR).format(annotation=config["annotation"])],
@@ -66,7 +66,7 @@ rule intersect:
     output:
          "%s/{annotation}/{species}/{species}.filt.{annotation}.bed"%ANNDIR
     shell:
-        "intersectBed -a {input[1]} -b {input[0]} -wa -u > {output}"
+        "intersectBed -a {input[1]} -b {input[0]} -wa -v > {output}"
 
 #filter STR in the annotated regions
 #rule filter:
