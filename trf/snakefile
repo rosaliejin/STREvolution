@@ -96,7 +96,7 @@ rule str_base:
     shell:
          "awk '{{print length($6)}}'  {input[1]} | awk '{{sum+=$1 }}END{{ print sum }}'> {output}"
 
-#count the length of each repeated unit
+#count the average length of each repeated unit
 rule repeat_length:
     input:
         "%s/{species}/{species}.str_base.txt"%YJDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR
@@ -104,6 +104,15 @@ rule repeat_length:
         "%s/{species}/{species}.repeat_length.txt"%YJDIR
     shell:
          "for period in $(seq 1 6); do awk -v\"period=$period\" '$4==period'  {input} | awk '{{print length($6)}}' | awk '{{sum+=$1 }}END{{ print sum/NR }}'; done > {output}"
+
+#count the length of each homopolymer
+rule repeat_length:
+    input:
+        "%s/{species}/{species}.repeat_length.txt"%YJDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR
+    output:
+        "%s/{species}/{species}.repeat_length1.txt"%YJDIR
+    shell:
+          "awk '{{print length($6)}}'  {input[1]} | awk '$4==1' > {output}"
 
 
 #Creating table to organize annalysis
