@@ -106,7 +106,7 @@ rule repeat_length:
          "for period in $(seq 1 6); do awk -v\"period=$period\" '$4==period'  {input} | awk '{{print length($6)}}' | awk '{{sum+=$1 }}END{{ print sum/NR }}'; done > {output}"
 
 #count the length of each homopolymer
-rule repeat_length:
+rule homo_length:
     input:
         "%s/{species}/{species}.repeat_length.txt"%YJDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR
     output:
