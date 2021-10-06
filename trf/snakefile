@@ -153,7 +153,7 @@ rule penta_length:
 #count the length of each hexanuleutide
 rule hexa_length:
     input:
-        "%s/{species}/{species}.repeat_penta.txt"%YJDIR "%s/{species}/{species}.trf.filt.bed"%TRFDIR
+        "%s/{species}/{species}.repeat_penta.txt"%YJDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR
     output:
         "%s/{species}/{species}.repeat_hexa.txt"%YJDIR
     shell:
