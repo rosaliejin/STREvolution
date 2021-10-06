@@ -31,7 +31,7 @@ else:
     strbase= int(f)
 #strbase= float(file.readline().replace("\n",""))
 
-file = open(sys.argv[5],"r")
+file = open(sys.argv[6],"r")
 repeatlength= [] # counts of # STRs for each repeated units
 while True:
     line = file.readline()
@@ -40,11 +40,24 @@ while True:
     else:
         repeatlength.append(float(line))
 
+file = open(sys.argv[7],"r")
+unitlength= [] # counts of # STRs for each repeated units
+
 species_name= sys.argv[4]
+unitlength.append(species_name)
+
+while True:
+    line = file.readline()
+    if line == "":
+        break
+    else:
+        unitlength.append(int(line))
+
 
 #filename = sys.argv[5]
 #filepath = "/storage/mgymrek/TReeofLife/SnakemakeTest/"+filename
 filepath = sys.argv[5]
+output2 = sys.argv[8]
 
 # In[ ]:
 strnumsum = sum(strcount)
@@ -89,6 +102,9 @@ outf = open(filepath, "w")
 outf.write(",".join([str(item) for item in final])+"\n")
 outf.close()
 
+outf1 = open(output2, "w")
+outf1.write(",".join([str(item) for item in unitlength))
+outf1.close()
 #from csv import writer
 
 #with open(filepath, 'a+', newline='') as write_obj:

@@ -114,24 +114,75 @@ rule homo_length:
     shell:
         "awk '$4==1' {input[1]} | awk '{{print length($6)}}' > {output}"
 
+#count the length of each dinucleutide
+rule di_length:
+    input:
+        "%s/{species}/{species}.repeat_homo.txt"%YJDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR
+    output:
+        "%s/{species}/{species}.repeat_di.txt"%YJDIR
+    shell:
+        "awk '$4==2' {input[1]} | awk '{{print length($6)}}' > {output}"
+
+        #count the length of each trinucleutide
+rule tri_length:
+    input:
+        "%s/{species}/{species}.repeat_di.txt"%YJDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR
+    output:
+        "%s/{species}/{species}.repeat_tri.txt"%YJDIR
+    shell:
+        "awk '$4==3' {input[1]} | awk '{{print length($6)}}' > {output}"
+
+#count the length of each tetranucleutide
+rule tetra_length:
+    input:
+        "%s/{species}/{species}.repeat_tri.txt"%YJDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR
+    output:
+        "%s/{species}/{species}.repeat_tetra.txt"%YJDIR
+    shell:
+        "awk '$4==4' {input[1]} | awk '{{print length($6)}}' > {output}"
+
+#count the length of each pentanucleutide
+rule penta_length:
+    input:
+        "%s/{species}/{species}.repeat_tetra.txt"%YJDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR
+    output:
+        "%s/{species}/{species}.repeat_penta.txt"%YJDIR
+    shell:
+        "awk '$4==5' {input[1]} | awk '{{print length($6)}}' > {output}"
+
+#count the length of each hexanuleutide
+rule hexa_length:
+    input:
+        "%s/{species}/{species}.repeat_penta.txt"%YJDIR "%s/{species}/{species}.trf.filt.bed"%TRFDIR
+    output:
+        "%s/{species}/{species}.repeat_hexa.txt"%YJDIR
+    shell:
+        "awk '$4==6' {input[1]} | awk '{{print length($6)}}' > {output}"
 
 #Creating table to organize annalysis
 rule organize:
     input:
-        "%s/{species}/{species}.str_base.txt"%YJDIR, "%s/{species}/{species}.str_count.txt"%YJDIR, "%s/{species}/{species}.genome_length.txt"%YJDIR, "%s/{species}/{species}.repeat_length.txt"%YJDIR, "%s/{species}/{species}.repeat_homo.txt"%YJDIR
+        "%s/{species}/{species}.str_base.txt"%YJDIR, "%s/{species}/{species}.str_count.txt"%YJDIR, "%s/{species}/{species}.genome_length.txt"%YJDIR, "%s/{species}/{species}.repeat_length.txt"%YJDIR, "%s/{species}/{species}.repeat_hexa.txt"%YJ
     output:
-        "%s/organize_{species}.csv"%YJDIR
+        "%s/organize_{species}.csv"%YJDIR, "%s/organize_{species}_unitlength.csv"%YJDIR
     shell:
-         "python \"STREvolution_Stat.py\" {input[1]} {input[2]} {input[0]} {wildcards.species} {output} {input[3]}"
+         "python \"STREvolution_Stat.py\" {input[1]} {input[2]} {input[0]} {wildcards.species} {output} {input[3]} {input[4]} {output[1]}"
 
 rule combine_organize:
     input:
          [("%s/organize_{species}.csv"%YJDIR).format(species=species) for species in SPECIES]
     output:
-        "%s/organize3.csv"%YJDIR
+        "%s/organize.csv"%YJDIR
     shell:
         "cat {input} > {output}"
 
+rule combine_unitorganize:
+    input:
+         [( "%s/organize_{species}_unitlength.csv"%YJDIR).format(species=species) for species in SPECIES]
+    output:
+        "%s/organize_unit.csv"%YJDIR
+    shell:
+        "cat {input} > {output}"
 rule plot:
     input:
        "%s/organize.csv"%YJDIR
