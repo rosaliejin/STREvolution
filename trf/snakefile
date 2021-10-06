@@ -112,7 +112,7 @@ rule homo_length:
     output:
         "%s/{species}/{species}.repeat_homo.txt"%YJDIR
     shell:
-        “awk '$4==1' {input[1]} | awk '{{print length($6)}}' > {output}"
+        “awk '{{$4==1}}' {input[1]} | awk '{{print length($6)}}' > {output}"
 
 
 #Creating table to organize annalysis
