@@ -32,16 +32,16 @@ else:
 #strbase= float(file.readline().replace("\n",""))
 species_name= sys.argv[4]
 
-file = open(sys.argv[6],"r")
-repeatlength= [] # counts of # STRs for each repeated units
-while True:
-    line = file.readline()
-    if line == "":
-        break
-    else:
-        repeatlength.append(float(line))
+#file = open(sys.argv[6],"r")
+#repeatlength= [] # counts of # STRs for each repeated units
+#while True:
+#    line = file.readline()
+#    if line == "":
+#        break
+#    else:
+#        repeatlength.append(float(line))
 
-file = open(sys.argv[7],"r")
+file = open(sys.argv[6],"r")
 unitlength= [] # counts of # STRs for each repeated units
 
 
@@ -58,7 +58,7 @@ while True:
 #filename = sys.argv[5]
 #filepath = "/storage/mgymrek/TReeofLife/SnakemakeTest/"+filename
 filepath = sys.argv[5]
-output2 = sys.argv[8]
+output2 = sys.argv[7]
 
 # In[ ]:
 strnumsum = sum(strcount)

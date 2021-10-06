@@ -97,18 +97,18 @@ rule str_base:
          "awk '{{print length($6)}}'  {input[1]} | awk '{{sum+=$1 }}END{{ print sum }}'> {output}"
 
 #count the average length of each repeated unit
-rule repeat_length:
-    input:
-        "%s/{species}/{species}.str_base.txt"%YJDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR
-    output:
-        "%s/{species}/{species}.repeat_length.txt"%YJDIR
-    shell:
-         "for period in $(seq 1 6); do awk -v\"period=$period\" '$4==period'  {input} | awk '{{print length($6)}}' | awk '{{sum+=$1 }}END{{ print sum/NR }}'; done > {output}"
+#rule repeat_length:
+#    input:
+#        "%s/{species}/{species}.str_base.txt"%YJDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR
+#    output:
+#        "%s/{species}/{species}.repeat_length.txt"%YJDIR
+#    shell:
+#         "for period in $(seq 1 6); do awk -v\"period=$period\" '$4==period'  {input} | awk '{{print length($6)}}' | awk '{{sum+=$1 }}END{{ print sum/NR }}'; done > {output}"
 
 #count the length of each homopolymer
 rule homo_length:
     input:
-        "%s/{species}/{species}.repeat_length.txt"%YJDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR
+        "%s/{species}/{species}.str_base.txt"%YJDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR
     output:
         "%s/{species}/{species}.repeat_homo.txt"%YJDIR
     shell:
@@ -162,11 +162,11 @@ rule hexa_length:
 #Creating table to organize annalysis
 rule organize:
     input:
-        "%s/{species}/{species}.str_base.txt"%YJDIR, "%s/{species}/{species}.str_count.txt"%YJDIR, "%s/{species}/{species}.genome_length.txt"%YJDIR, "%s/{species}/{species}.repeat_length.txt"%YJDIR, "%s/{species}/{species}.repeat_hexa.txt"%YJDIR
+        "%s/{species}/{species}.str_base.txt"%YJDIR, "%s/{species}/{species}.str_count.txt"%YJDIR, "%s/{species}/{species}.genome_length.txt"%YJDIR, "%s/{species}/{species}.repeat_hexa.txt"%YJDIR
     output:
         "%s/organize_{species}.csv"%YJDIR, "%s/organize_{species}_unitlength.csv"%YJDIR
     shell:
-         "python \"STREvolution_Stat.py\" {input[1]} {input[2]} {input[0]} {wildcards.species} {output[0]} {input[3]} {input[4]} {output[1]}"
+         "python \"STREvolution_Stat.py\" {input[1]} {input[2]} {input[0]} {wildcards.species} {output[0]} {input[3]} {output[1]}"
 
 rule combine_organize:
     input:
