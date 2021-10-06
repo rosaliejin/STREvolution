@@ -103,7 +103,7 @@ outf.write(",".join([str(item) for item in final])+"\n")
 outf.close()
 
 outf1 = open(output2, "w")
-outf1.write(",".join([str(item) for item in unitlength])}
+outf1.write(",".join([str(item) for item in unitlength]))
 outf1.close()
 #from csv import writer
 
