@@ -30,8 +30,9 @@ if f == "":
 else:
     strbase= int(f)
 #strbase= float(file.readline().replace("\n",""))
+species_name= sys.argv[4]
 
-file = open(sys.argv[5],"r")
+file = open(sys.argv[6],"r")
 repeatlength= [] # counts of # STRs for each repeated units
 while True:
     line = file.readline()
@@ -43,7 +44,7 @@ while True:
 file = open(sys.argv[7],"r")
 unitlength= [] # counts of # STRs for each repeated units
 
-species_name= sys.argv[4]
+
 unitlength.append(species_name)
 
 while True:
