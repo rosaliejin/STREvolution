@@ -90,8 +90,8 @@ if genomelength == 0:
 else:
     row.append(strnumsum/float(genomelength))
 
-for a in repeatlength:
-    row.append(a)
+#for a in repeatlength:
+ #   row.append(a)
 
 final.append(species_name)
 
