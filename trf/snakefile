@@ -25,7 +25,7 @@ rule all:
 	#"%s/TRSpecies_tetranucleotide.pdf"%YJDIR,
 	#"%s/TRSpecies_pentanucleotide.pdf"%YJDIR,
 	#"%s/TRSpecies_hexanucleotide.pdf"%YJDIR
-        "%s/organize3.csv"%YJDIR
+        "%s/organize_unit.csv"%YJDIR
         
 
 rule index_fa:
