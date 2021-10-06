@@ -110,7 +110,7 @@ rule homo_length:
     input:
         "%s/{species}/{species}.repeat_length.txt"%YJDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR
     output:
-        "%s/{species}/{species}.repeat_length1.txt"%YJDIR
+        "%s/{species}/{species}.repeat_homo.txt"%YJDIR
     shell:
           "awk '{{print length($6)}}'  {input[1]} | awk '$4==1' > {output}"
 
