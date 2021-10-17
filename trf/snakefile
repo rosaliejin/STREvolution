@@ -162,11 +162,11 @@ rule hexa_length:
 #Creating table to organize annalysis
 rule organize:
     input:
-        "%s/{species}/{species}.str_base.txt"%YJDIR, "%s/{species}/{species}.str_count.txt"%YJDIR, "%s/{species}/{species}.genome_length.txt"%YJDIR, "%s/{species}/{species}.repeat_di.txt"%YJDIR
+        "%s/{species}/{species}.str_count.txt"%YJDIR, "%s/{species}/{species}.genome_length.txt"%YJDIR, "%s/{species}/{species}.str_base.txt"%YJDIR, "%s/{species}/{species}.repeat_homo.txt"%YJDIR
     output:
         "%s/organize_{species}.csv"%YJDIR, "%s/organize_{species}_unitlength.csv"%YJDIR
     shell:
-         "python \"STREvolution_Stat.py\" {input[1]} {input[2]} {input[0]} {wildcards.species} {output[0]} {input[3]} {output[1]}"
+         "python \"STREvolution_Stat.py\" {input[0]} {input[1]} {input[2]} {wildcards.species} {output[0]} {input[3]} {output[1]}"
 
 rule combine_organize:
     input:

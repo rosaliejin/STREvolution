@@ -5,6 +5,8 @@
 
 import sys
 import csv
+import statistics
+from statistics import mean
 
 file = open(sys.argv[1],"r")
 strcount= [] # counts of # STRs for each repeated units
@@ -43,6 +45,7 @@ species_name= sys.argv[4]
 
 file = open(sys.argv[6],"r")
 unitlength= [] # counts of # STRs for each repeated units
+calculation = [] #bracket for calculate meand and std
 
 
 unitlength.append(species_name)
@@ -52,7 +55,10 @@ while True:
     if line == "":
         break
     else:
-        unitlength.append(int(line))
+        calculation.append(int(line))
+unitlength.append(mean(calculation)) #append mean of the length
+unitlength.append(statistics.pstdev(calculation)) #append std of the length
+
 
 
 #filename = sys.argv[5]
