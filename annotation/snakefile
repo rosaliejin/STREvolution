@@ -67,7 +67,7 @@ rule intersect:
     output:
          "%s/{annotation}/{species}/{species}.filt.{annotation}.bed"%ANNDIR
     shell:
-        "intersectBed -a {input[1]} -b {input[0]} -wa -u > {output}"
+        "intersectBed -a {input[1]} -b {input[0]} -wa -v > {output}"
 
 #filter STR in the annotated regions
 #rule filter:
