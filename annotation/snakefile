@@ -65,7 +65,7 @@ rule intersect:
     input:
         "%s/{species}.{annotation}.bed"%ANNDIR, "%s/{species}/{species}.trf.filt.bed"%TRFDIR
     output:
-         "%s/{annotation}/{species}/{species}.filt.u.{annotation}.bed"%ANNDIR
+         "%s/{annotation}/{species}/{species}.filt.{annotation}.bed"%ANNDIR
     shell:
         "intersectBed -a {input[1]} -b {input[0]} -wa -u > {output}"
 
