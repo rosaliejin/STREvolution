@@ -28,7 +28,7 @@ rule all:
         #[("%s/ann.{annotation}.TRSpecies_tetranucleotide.pdf"%YJDIR).format(annotation=config["annotation"])],
         #[("%s/ann.{annotation}.TRSpecies_pentanucleotide.pdf"%YJDIR).format(annotation=config["annotation"])],
         #[("%s/ann.{annotation}.TRSpecies_hexanucleotide.pdf"%YJDIR).format(annotation=config["annotation"])]
-        [("%s/ann.{annotation}.organize-u.csv"%YJDIR).format(annotation=config["annotation"])]
+        [("%s/ann.{annotation}.organize-v.csv"%YJDIR).format(annotation=config["annotation"])]
         #[("%s/ann.{annotation}.organize_{species}.csv"%YJDIR).format(species=species, annotation=config["annotation"]) for species in SPECIES]
         #[("%s/{species}.TranslationStart.bed"%ANNDIR).format(species=species, annotation=config["annotation"]) for species in SPECIES]
 
@@ -68,7 +68,7 @@ rule intersect:
     output:
          "%s/{annotation}/{species}/{species}.filt.{annotation}.bed"%ANNDIR
     shell:
-        "intersectBed -a {input[1]} -b {input[0]} -wa -u > {output}"
+        "intersectBed -a {input[1]} -b {input[0]} -wa -v > {output}"
 
 #filter STR in the annotated regions
 #rule filter:
