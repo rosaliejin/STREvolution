@@ -127,7 +127,7 @@ rule combine_organize:
 
 rule plot:
     input:
-       "%s/ann.{annotation}.organize-v.csv"%YJDIR
+       "%s/ann.{annotation}.organize-u.csv"%YJDIR
     #if multiple figures are saved in this step, what should be the output?
     output:
         "%s/ann.{annotation}.-U.TRSpecies_PeriodPercs.pdf"%YJDIR, "%s/ann.{annotation}.TRSpecies_GenomePerc.pdf"%YJDIR, "%s/ann.{annotation}.TRSpecies_Density.pdf"%YJDIR, "%s/ann.{annotation}.TRSpecies_homopolymer.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_dinucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_trinucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_tetranucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_pentanucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_hexanucleotide.pdf"%YJDIR
