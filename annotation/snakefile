@@ -28,7 +28,7 @@ rule all:
         #[("%s/ann.{annotation}.TRSpecies_tetranucleotide.pdf"%YJDIR).format(annotation=config["annotation"])],
         #[("%s/ann.{annotation}.TRSpecies_pentanucleotide.pdf"%YJDIR).format(annotation=config["annotation"])],
         #[("%s/ann.{annotation}.TRSpecies_hexanucleotide.pdf"%YJDIR).format(annotation=config["annotation"])]
-        “%s/ann.{annotation}.organize-u.csv"%YJDIR
+        "%s/ann.{annotation}.organize-u.csv"%YJDIR
         #[("%s/ann.{annotation}.organize_{species}.csv"%YJDIR).format(species=species, annotation=config["annotation"]) for species in SPECIES]
         #[("%s/{species}.TranslationStart.bed"%ANNDIR).format(species=species, annotation=config["annotation"]) for species in SPECIES]
 
