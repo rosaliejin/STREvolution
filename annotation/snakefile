@@ -19,7 +19,7 @@ SPECIES = ["otoGar3","micMur2","tarSyr2","saiBol1",'calJac4',"nomLeu3","ponAbe2"
 
 rule all:
     input:
-        #[("%s/ann.{annotation}.-V.TRSpecies_PeriodPercs.pdf"%YJDIR).format(annotation=config["annotation"])],
+        [("%s/ann.{annotation}.-V.TRSpecies_PeriodPercs.pdf"%YJDIR).format(annotation=config["annotation"])],
         #[("%s/ann.{annotation}.-V.TRSpecies_GenomePerc.pdf"%YJDIR).format(annotation=config["annotation"])],
         #[("%s/ann.{annotation}.-V.TRSpecies_Density.pdf"%YJDIR).format(annotation=config["annotation"])],
         #[("%s/ann.{annotation}.TRSpecies_homopolymer.pdf"%YJDIR).format(annotation=config["annotation"])],
