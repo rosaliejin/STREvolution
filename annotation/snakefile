@@ -130,6 +130,6 @@ rule plot:
        "%s/ann.{annotation}.organize.csv"%YJDIR
     #if multiple figures are saved in this step, what should be the output?
     output:
-        "%s/ann.{annotation}.TRSpecies_PeriodPercs.pdf"%YJDIR, "%s/ann.{annotation}.TRSpecies_GenomePerc.pdf"%YJDIR, "%s/ann.{annotation}.TRSpecies_Density.pdf"%YJDIR, "%s/ann.{annotation}.TRSpecies_homopolymer.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_dinucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_trinucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_tetranucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_pentanucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_hexanucleotide.pdf"%YJDIR
+        "%s/ann.{annotation}.-V.TRSpecies_PeriodPercs.pdf"%YJDIR, "%s/ann.{annotation}.TRSpecies_GenomePerc.pdf"%YJDIR, "%s/ann.{annotation}.TRSpecies_Density.pdf"%YJDIR, "%s/ann.{annotation}.TRSpecies_homopolymer.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_dinucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_trinucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_tetranucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_pentanucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_hexanucleotide.pdf"%YJDIR
     shell:
         "python \"Tree_Of_Life_Graph.py\" {input[0]} {output}"
