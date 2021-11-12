@@ -11,7 +11,7 @@ config["annotation"] = "DNAREP1_DM"
 #PECIES = ["ce11","ailMel1","anoCar2","anoGam3","balAcu1","calMil1","cavPor3","cerSim1","chlSab2","choHof1", "criGriChoV2","danRer11","dasNov3","dipOrd1","dm6","echTel2","equCab3","felCat9","gadMor1","galGal6","hg19","latCha1","loxAfr3","macFas5","melUnd1","micMur2","musFur1","myoLuc2","nanPar1","nomLeu3","ochPri3","oreNil2","ornAna2","oryCun2","oryLat2","otoGar3","oviAri4","panPan3","panTro6","papAnu4","papHam1","ponAbe3","proCap1","pteVam1","rheMac10","sacCer3","saiBol1","sorAra2","sarHar1","speTri2","strPur2","susScr11","taeGut2","tarSyr2","tetNig2","thaSir1","triMan1","tupBel1","vicPac2",'bosTau9','calJac4','canFam5','fr3','gorGor6','melGal5','rn7','xenTro10','mm39'] 
 #SPECIES =["wuhCor1","ailMel1","bosTau7","ce11","chlSab2","choHof1","danRer11","equCab3","hg19","melGal1","mm10","myoLuc2","nomLeu3","ornAna2","oviAri4","panPan3","panTro6","papAnu4","ponAbe2","proCap1","pteVam1","rheMac10","rn6","sacCer3","susScr11","taeGut2","tetNig2","xenTro9"]
 #SPECIES =["ailMel1","aquChr2","bosTau7","calMil1","canFam3","canFam3","cavPor3","ce11","chlSab2","choHof1","chrPic1","criGriChoV2","danRer11","dasNov3","dipOrd1","dm6","echTel2","equCab3","felCat9","fr2","gadMor1","galGal6","gorGor5","hetGla2","hetGla2","hg19","latCha1","loxAfr3","macEug2","macFas5","melGal1","melUnd1","micMur2","mm10","musFur1","myoLuc2","nomLeu3","ochPri3","oreNil2","ornAna2","oryCun2","oryLat2","otoGar3","oviAri4","panPan3","panTro6","papAnu4","petMar3","ponAbe2","proCap1","pteVam1","rheMac10","rn6","sacCer3","saiBol1","sarHar1","sorAra2","speTri2","susScr11","taeGut2","tarSyr2","tetNig2","tupBel1","vicPac2","xenTro9"] 
-SPECIES = ["anoGam3","apiMel2", "droGri2", "droVir3","droMoj3","dp4","droPer1","droAna3","droSim1","droSec1","dm6","droEre2"]
+SPECIES = ["anoGam3", "droGri2", "droVir3","droMoj3","dp4","droPer1","droAna3","droSim1","droSec1","dm6","droEre2"]
 #SPECIES = ["otoGar3","micMur2","tarSyr2","saiBol1",'calJac4',"nomLeu3","ponAbe2","hg38","gorGor6","panTro6","panPan3","nasLar1","chlSab2","papHam1","papAnu4","rheMac10","macFas5"]
 # TODO this could eventually read from a file once this list gets very long
 
@@ -19,7 +19,7 @@ SPECIES = ["anoGam3","apiMel2", "droGri2", "droVir3","droMoj3","dp4","droPer1","
 
 rule all:
     input:
-        [("%s/ann.{annotation}.-V.TRSpecies_PeriodPercs.pdf"%YJDIR).format(annotation=config["annotation"])],
+        [("%s/ann.{annotation}.-U.TRSpecies_PeriodPercs.pdf"%YJDIR).format(annotation=config["annotation"])],
         #[("%s/ann.{annotation}.-V.TRSpecies_GenomePerc.pdf"%YJDIR).format(annotation=config["annotation"])],
         #[("%s/ann.{annotation}.-V.TRSpecies_Density.pdf"%YJDIR).format(annotation=config["annotation"])],
         #[("%s/ann.{annotation}.TRSpecies_homopolymer.pdf"%YJDIR).format(annotation=config["annotation"])],
@@ -28,7 +28,7 @@ rule all:
         #[("%s/ann.{annotation}.TRSpecies_tetranucleotide.pdf"%YJDIR).format(annotation=config["annotation"])],
         #[("%s/ann.{annotation}.TRSpecies_pentanucleotide.pdf"%YJDIR).format(annotation=config["annotation"])],
         #[("%s/ann.{annotation}.TRSpecies_hexanucleotide.pdf"%YJDIR).format(annotation=config["annotation"])]
-        [("%s/ann.{annotation}.organize-v.csv"%YJDIR).format(annotation=config["annotation"])]
+        [("%s/ann.{annotation}.organize-u.csv"%YJDIR).format(annotation=config["annotation"])]
         #[("%s/ann.{annotation}.organize_{species}.csv"%YJDIR).format(species=species, annotation=config["annotation"]) for species in SPECIES]
         #[("%s/{species}.TranslationStart.bed"%ANNDIR).format(species=species, annotation=config["annotation"]) for species in SPECIES]
 
@@ -68,7 +68,7 @@ rule intersect:
     output:
          "%s/{annotation}/{species}/{species}.filt.{annotation}.bed"%ANNDIR
     shell:
-        "intersectBed -a {input[1]} -b {input[0]} -wa -v > {output}"
+        "intersectBed -a {input[1]} -b {input[0]} -wa -u > {output}"
 
 #filter STR in the annotated regions
 #rule filter:
@@ -119,7 +119,7 @@ rule combine_organize:
     input:
          [("%s/ann.{annotation}.organize_{species}.csv"%YJDIR).format(species=species, annotation=config["annotation"]) for species in SPECIES]
     output:
-        "%s/ann.{annotation}.organize-v.csv"%YJDIR
+        "%s/ann.{annotation}.organize-u.csv"%YJDIR
     shell:
         "cat {input} > {output}"
 
@@ -127,9 +127,9 @@ rule combine_organize:
 
 rule plot:
     input:
-       "%s/ann.{annotation}.organize-v.csv"%YJDIR
+       "%s/ann.{annotation}.organize-u.csv"%YJDIR
     #if multiple figures are saved in this step, what should be the output?
     output:
-        "%s/ann.{annotation}.-V.TRSpecies_PeriodPercs.pdf"%YJDIR, "%s/ann.{annotation}.TRSpecies_GenomePerc.pdf"%YJDIR, "%s/ann.{annotation}.TRSpecies_Density.pdf"%YJDIR, "%s/ann.{annotation}.TRSpecies_homopolymer.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_dinucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_trinucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_tetranucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_pentanucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_hexanucleotide.pdf"%YJDIR
+        "%s/ann.{annotation}.-U.TRSpecies_PeriodPercs.pdf"%YJDIR, "%s/ann.{annotation}.TRSpecies_GenomePerc.pdf"%YJDIR, "%s/ann.{annotation}.TRSpecies_Density.pdf"%YJDIR, "%s/ann.{annotation}.TRSpecies_homopolymer.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_dinucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_trinucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_tetranucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_pentanucleotide.pdf"%YJDIR,  "%s/ann.{annotation}.TRSpecies_hexanucleotide.pdf"%YJDIR
     shell:
         "python \"Tree_Of_Life_Graph.py\" {input[0]} {output}"
