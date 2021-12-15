@@ -1,5 +1,9 @@
 wuhCor1
 eboVir3
+Ecoli
+Yersinia_pestis
+Bacillus_cereus
+Streptococcus_pneumoniae
 sacCer3
 aplCal1
 priPac1
