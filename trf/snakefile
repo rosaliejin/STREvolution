@@ -30,7 +30,7 @@ rule all:
 
 rule index_fa:
     input:
-        "%s/{species}/{species}.fa"%GENOMESDIR
+        "%s/{species}/{species}.fasta"%GENOMESDIR
     output:
         "%s/{species}/{species}.fa.fai"%GENOMESDIR
     shell:
