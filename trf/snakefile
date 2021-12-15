@@ -81,7 +81,7 @@ rule str_count:
 #count the length of entire genome
 rule genome_length:
     input:
-        "%s/{species}/{species}.str_count.txt"%YJDIR, "%s/{species}/{species}.fa.fai"%GENOMESDIR
+        "%s/{species}/{species}.str_count.txt"%YJDIR, "%s/{species}/{species}.fasta.fai"%GENOMESDIR
     output:
         "%s/{species}/{species}.genome_length.txt"%YJDIR
     shell:
