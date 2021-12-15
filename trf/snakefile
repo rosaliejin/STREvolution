@@ -30,9 +30,9 @@ rule all:
 
 rule index_fa:
     input:
-        "%s/{species}/{species}.fasta"%GENOMESDIR
+        "%s/{species}/{species}.fa"%GENOMESDIR
     output:
-        "%s/{species}/{species}.fasta.fai"%GENOMESDIR
+        "%s/{species}/{species}.fa.fai"%GENOMESDIR
     shell:
         "samtools faidx {input}"
 
@@ -40,8 +40,8 @@ rule index_fa:
 # It additionally outputs {species}.chrom, so that the rule has an output file to check
 rule split_fa:
     input:
-        "%s/{species}/{species}.fasta"%GENOMESDIR,
-        "%s/{species}/{species}.fasta.fai"%GENOMESDIR
+        "%s/{species}/{species}.fa"%GENOMESDIR,
+        "%s/{species}/{species}.fa.fai"%GENOMESDIR
     output:
         "%s/{species}/bychrom/{species}.chroms"%GENOMESDIR
     shell:
@@ -81,7 +81,7 @@ rule str_count:
 #count the length of entire genome
 rule genome_length:
     input:
-        "%s/{species}/{species}.str_count.txt"%YJDIR, "%s/{species}/{species}.fasta.fai"%GENOMESDIR
+        "%s/{species}/{species}.str_count.txt"%YJDIR, "%s/{species}/{species}.fa.fai"%GENOMESDIR
     output:
         "%s/{species}/{species}.genome_length.txt"%YJDIR
     shell:
