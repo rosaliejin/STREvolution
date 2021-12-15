@@ -32,7 +32,7 @@ rule index_fa:
     input:
         "%s/{species}/{species}.fasta"%GENOMESDIR
     output:
-        "%s/{species}/{species}.fa.fai"%GENOMESDIR
+        "%s/{species}/{species}.fasta.fai"%GENOMESDIR
     shell:
         "samtools faidx {input}"
 
@@ -41,7 +41,7 @@ rule index_fa:
 rule split_fa:
     input:
         "%s/{species}/{species}.fasta"%GENOMESDIR,
-        "%s/{species}/{species}.fa.fai"%GENOMESDIR
+        "%s/{species}/{species}.fasta.fai"%GENOMESDIR
     output:
         "%s/{species}/bychrom/{species}.chroms"%GENOMESDIR
     shell:
