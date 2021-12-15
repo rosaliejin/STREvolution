@@ -15,9 +15,9 @@ SPECIES = ['Ecoli','Yersinia_pestis','Bacillus_cereus','Streptococcus_pneumoniae
 
 rule all:
     input:
-        "%s/TRSpecies_PeriodPercsNew.pdf"%YJDIR,
-        "%s/TRSpecies_GenomePercNew.pdf"%YJDIR,
-        "%s/TRSpecies_DensityNew.pdf"%YJDIR,
+        "%s/TRSpecies_PeriodPercs.pdf"%YJDIR,
+        "%s/TRSpecies_GenomePerc.pdf"%YJDIR,
+        "%s/TRSpecies_Density.pdf"%YJDIR,
         #[("%s/organize_{species}.csv"%YJDIR).format(species=species) for species in SPECIES]
 	#"%s/TRSpecies_homopolymer.pdf"%YJDIR,
 	#"%s/TRSpecies_dinucleotide.pdf"%YJDIR,
