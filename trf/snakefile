@@ -40,7 +40,7 @@ rule index_fa:
 # It additionally outputs {species}.chrom, so that the rule has an output file to check
 rule split_fa:
     input:
-        "%s/{species}/{species}.fa"%GENOMESDIR,
+        "%s/{species}/{species}.fasta"%GENOMESDIR,
         "%s/{species}/{species}.fa.fai"%GENOMESDIR
     output:
         "%s/{species}/bychrom/{species}.chroms"%GENOMESDIR
