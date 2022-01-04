@@ -21,8 +21,9 @@ out_1 = sys.argv[5]
 out_2 = sys.argv[6]
 out_3 = sys.argv[7]
 out_4 = sys.argv[8]
-out_5 = sys.argv[9]
+#out_5 = sys.argv[9]
 out_6 = sys.argv[10]
+out_str_num = sys.argv[9]
 
 
 # Load ordered species list
@@ -93,6 +94,15 @@ ax.bar(range(data.shape[0]), data["str.density"], color="black", edgecolor="whit
 ax.set_xticks(range(data.shape[0]))
 ax.set_xticklabels(data["name"], rotation=90);
 fig.savefig(out_density)
+
+# Plot total str number
+fig = plt.figure()
+fig.set_size_inches((20, 12))
+ax = fig.add_subplot(111)
+ax.bar(range(data.shape[0]), data["str.density"], color="black", edgecolor="white");
+ax.set_xticks(range(data.shape[0]))
+ax.set_xticklabels(data["name"], rotation=90);
+fig.savefig(out_str_num)
 
 
 fig = plt.figure()
