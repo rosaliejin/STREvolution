@@ -166,7 +166,7 @@ ax = fig.add_subplot(111)
 ax.bar(range(data.shape[0]), data["ave_pentanucleotide"], color="black", edgecolor="white");
 ax.set_xticks(range(data.shape[0]))
 ax.set_xticklabels(data["name"], rotation=90);
-fig.savefig(out_5)
+#fig.savefig(out_5)
 
 
 # In[48]:
