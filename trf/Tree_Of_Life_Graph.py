@@ -60,7 +60,7 @@ data
 
 fig = plt.figure()
 fig.set_size_inches((20, 12))
-ax = fig.add_subplot(135)
+ax = fig.add_subplot(111)
 
 bottoms = np.array([0]*data.shape[0])
 
@@ -78,7 +78,7 @@ ax.spines['right'].set_visible(False)
 ax.spines['top'].set_visible(False)
 ax.yaxis.set_ticks_position('left')
 ax.xaxis.set_ticks_position('bottom')
-fig.savefig(out_period_perc)
+fig.savefig(out_period_perc,bbox_inches = 'tight')
 
 
 # In[36]:
