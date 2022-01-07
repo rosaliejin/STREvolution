@@ -5,6 +5,7 @@
 import pandas as pd
 import numpy as np
 import sys
+import csv
 
 
 import matplotlib
@@ -26,6 +27,7 @@ out_6 = sys.argv[10]
 out_str_num = sys.argv[11]
 
 
+
 # Load ordered species list
 species_list = [item.strip() for item in open("STR_SpeciesList.txt", "r").readlines()]
 print(species_list)
@@ -41,6 +43,19 @@ col_name = ["name","homopolymers","dinucleotide","trinucleotide","tetranucleotid
 data = pd.read_csv(infile,header = None, names = col_name)
 data["order"] = data["name"].apply(lambda x: species_order[x])
 data = data.sort_values("order")
+
+#full full names into dictionary
+reader = csv.reader(open('fullname.csv'))
+
+result = {}
+for row in reader:
+    key = row[0]
+    if key in result:
+        # implement your duplicate row handling here
+        pass
+    result[key] = row[1]
+
+data["fullname"] = data["name"].apply(lambda x: result[x])
 
 # Remove species we don't want. e.g. Ebola
 #rmspecies = ["Ebola_virus"]
@@ -73,7 +88,7 @@ for period in range(1, 7):
     bottoms = bottoms+values
     
 ax.set_xticks(range(len(bottoms)))
-ax.set_xticklabels(data["name"], rotation=90);
+ax.set_xticklabels(data["fullname"], rotation=90);
 
 ax.spines['right'].set_visible(False)
 ax.spines['top'].set_visible(False)
