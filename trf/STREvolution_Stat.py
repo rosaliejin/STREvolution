@@ -56,7 +56,7 @@ while True:
         break
     else:
         calculation.append(int(line))
-if calculation.length == 0:
+if len(calculation) == 0:
     unitlength.append(0)
     unitlength.append(0)
 else:
