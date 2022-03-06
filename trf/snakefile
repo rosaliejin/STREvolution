@@ -164,7 +164,7 @@ rule hexa_length:
 #Creating table to organize annalysis
 rule organize:
     input:
-        "%s/{species}/{species}.str_count.txt"%YJDIR, "%s/{species}/{species}.genome_length.txt"%YJDIR, "%s/{species}/{species}.str_base.txt"%YJDIR, "%s/{species}/{species}.repeat_di.txt"%YJDIR
+        "%s/{species}/{species}.str_count.txt"%YJDIR, "%s/{species}/{species}.genome_length.txt"%YJDIR, "%s/{species}/{species}.str_base.txt"%YJDIR, "%s/{species}/{species}.repeat_tri.txt"%YJDIR
     output:
         "%s/organize_{species}.csv"%YJDIR, "%s/organize_{species}_unitlength.csv"%YJDIR
     shell:
