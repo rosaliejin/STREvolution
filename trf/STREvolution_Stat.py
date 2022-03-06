@@ -52,7 +52,7 @@ unitlength.append(species_name)
 
 while True:
     line = file.readline()
-    if line == "":
+    if line == " ":
         break
     else:
         calculation.append(int(line))
