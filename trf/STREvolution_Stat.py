@@ -52,12 +52,16 @@ unitlength.append(species_name)
 
 while True:
     line = file.readline()
-    if line == " ":
+    if line == "":
         break
     else:
         calculation.append(int(line))
-unitlength.append(mean(calculation)) #append mean of the length
-unitlength.append(statistics.pstdev(calculation)) #append std of the length
+if calculation.length == 0:
+    unitlength.append(0)
+    unitlength.append(0)
+else:
+    unitlength.append(mean(calculation)) #append mean of the length
+    unitlength.append(statistics.pstdev(calculation)) #append std of the length
 
 
 
