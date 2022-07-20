@@ -189,7 +189,7 @@ rule plot:
     input:
        "%s/organize.csv"%YJDIR
     #if multiple figures are saved in this step, what should be the output?
-    output:
         "%s/TRSpecies_PeriodPercs.pdf"%YJDIR, "%s/TRSpecies_GenomePerc.pdf"%YJDIR, "%s/TRSpecies_Density.pdf"%YJDIR,"%s/TRSpecies_homopolymer.pdf"%YJDIR,"%s/TRSpecies_dinucleotide.pdf"%YJDIR,"%s/TRSpecies_trinucleotide.pdf"%YJDIR,"%s/TRSpecies_tetranucleotide.pdf"%YJDIR,"%s/TRSpecies_pentanucleotide.pdf"%YJDIR,"%s/TRSpecies_hexanucleotide.pdf"%YJDIR, "%s/TRSpecies_STRnum.pdf"%YJDIR
+    output:
     shell:
         "python \"Tree_Of_Life_Graph.py\" {input[0]} {output}"
