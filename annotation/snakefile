@@ -22,7 +22,7 @@ rule all:
     input:
     
         [("%s/ann.{annotation}.-U.TRSpecies_PeriodPercs.pdf"%YJDIR).format(annotation=config["annotation"])],
-        [("%s/ann.{annotation}.-U.TRSpecies_GenomePerc.pdf"%YJDIR).format(annotation=config["annotation"])],
+        [("%s/ann.{annotation}.-U.TRSpecies_GenomePerc.pdf"%YJDIR).format(annotation=config["annotation"])]
         #[("%s/ann.{annotation}.-V.TRSpecies_Density.pdf"%YJDIR).format(annotation=config["annotation"])],
         #[("%s/ann.{annotation}.TRSpecies_homopolymer.pdf"%YJDIR).format(annotation=config["annotation"])],
         #[("%s/ann.{annotation}.TRSpecies_dinucleotide.pdf"%YJDIR).format(annotation=config["annotation"])],
